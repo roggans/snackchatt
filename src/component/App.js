@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    Container,
-    Row,
-    Col,
-    Jumbotron,
-    Button
-} from 'reactstrap';
+// import {
+//     Collapse,
+//     Navbar,
+//     NavbarToggler,
+//     NavbarBrand,
+//     Nav,
+//     NavItem,
+//     NavLink,
+//     Container,
+//     Row,
+//     Col,
+//     Jumbotron,
+//     Button
+// } from 'reactstrap';
 import {
     BrowserRouter,
     Route
 } from 'react-router-dom'; 
+import MainNavbar from './MainNavbar';
+import Home from './Home';
 import About from './About';
+
 
 const App = () => (
     <BrowserRouter>
-    <Route path="/about" render={ () => <About title='Hej på dig' /> } />
-</BrowserRouter>)
+        <div>
+            <MainNavbar /> 
+            <Route exact path="/" component={Home} />
+            <Route path="/about" render={ () => <About title='Hej på dig' /> } />
+            
+        </div>
+    </BrowserRouter>
+)
 
 export default App;
 
