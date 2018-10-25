@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
  import {
@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
      NavbarBrand,
      Nav,
      NavItem,
-     NavLink,
+     //NavLink,
      Container,
      Row,
      Col,
@@ -28,10 +28,10 @@ const MainNavbar = () => (
         
         <Nav className="ml-auto" navbar>
             <NavItem>
-             <Link exact to="/" activeClassName = "active">Welcome</Link>  {/*   Then changed to NavLink it dont work  */}
+             <NavLink exact to="/" activeStyle={{background: 'tomato'}}>Startsida</NavLink> 
             </NavItem>
             <NavItem>
-            <Link to="/about" activeClassName = "active">About</Link>
+            <NavLink to="/about" activeStyle={{background: 'green'}}>About</NavLink>
             </NavItem>
             
         </Nav>
