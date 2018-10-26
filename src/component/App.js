@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import {
 //     Collapse,
 //     Navbar,
@@ -20,17 +20,22 @@ import {
 import MainNavbar from './MainNavbar';
 import Home from './Home';
 import About from './About';
-
+import People from './People/People';
+import LoginForm from './Loginform/Loginform';
 
 const App = () => (
+    <div>
     <BrowserRouter>
         <div>
             <MainNavbar /> 
             <Route exact path="/" component={Home} />
             <Route path="/about" render={ () => <About title='Hej på dig' /> } />
+            <Route path="/people" component={People} />
             
         </div>
     </BrowserRouter>
+    <LoginForm />
+    </div>
 )
 
 export default App;

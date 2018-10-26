@@ -1,5 +1,7 @@
+import React from 'react';
+// import ReactDOM from 'react-dom';
 import people from "./people.jpg";
-import {Component as ReactComponent} from  "react";
+import {Component} from  "react";
 
 export default class People extends Component {
   
@@ -36,13 +38,19 @@ export default class People extends Component {
   }
 
   render(){ 
-    return <Fragment>
+    return (
+      <div>
         <div className="People mb-3 mt-5" style={this.state.peopleStyle}>
           <img style={this.state.peopleImageStyle} alt="people" src={people}/>
         </div>
         <button className="btn btn-primary" style={{marginRight:62}} onClick = {e => this.prev()}>&lt;</button>
         <button className="btn btn-primary" onClick = {e => this.next()}>&gt;</button>
-    </Fragment>
+    </div>
+    );
   }
 
 }
+
+
+    
+

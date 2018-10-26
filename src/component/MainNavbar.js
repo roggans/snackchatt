@@ -1,20 +1,20 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
- import {
-     Collapse,
+import {
+     // Collapse,
      Navbar,
-     NavbarToggler,
+     // NavbarToggler,
      NavbarBrand,
      Nav,
      NavItem,
      //NavLink,
-     Container,
-     Row,
-     Col,
-     Jumbotron,
-     Button
+     // Container,
+     // Row,
+     // Col,
+     // Jumbotron,
+     // Button
  } from 'reactstrap';
 
 const MainNavbar = () => (
@@ -32,6 +32,9 @@ const MainNavbar = () => (
             </NavItem>
             <NavItem>
             <NavLink to="/about" activeStyle={{background: 'green'}}>About</NavLink>
+            </NavItem>
+            <NavItem>
+            <NavLink to="/people" activeStyle={{background: 'green'}}>People</NavLink>
             </NavItem>
             
         </Nav>

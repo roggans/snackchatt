@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Container, FormGroup, Form, Col, Label, Input } from 'reactstrap';
+import './Loginform.css'
 
 class ModalExample extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button className="Loginbutton" color="danger" onClick={this.toggle}>{this.props.buttonLabel}Logga in</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
