@@ -1,16 +1,31 @@
-import React, { Component } from 'react';
-import {
-  Container, Col, Form,
-  FormGroup, Label, Input,
-  Button,
-} from 'reactstrap';
-import './Loginform.css';
+import React from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Container, FormGroup, Form, Col, Label, Input } from 'reactstrap';
 
-class Loginform extends Component {
+class ModalExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
   render() {
     return (
-      <Container className="App">
-        <h2>Sign In</h2>
+      <div>
+        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+          <Container>
+        <h2>Logga in</h2>
         <Form className="form">
           <Col>
             <FormGroup>
@@ -34,11 +49,18 @@ class Loginform extends Component {
               />
             </FormGroup>
           </Col>
-          <Button>Submit</Button>
+          <Button>Skicka</Button>
         </Form>
       </Container>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }
 
-export default Loginform;
+export default ModalExample;
