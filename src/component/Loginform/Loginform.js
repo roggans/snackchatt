@@ -23,14 +23,14 @@ class ModalExample extends React.Component {
       <div>
         <Button className="Loginbutton" color="danger" onClick={this.toggle}>{this.props.buttonLabel}Logga in</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          
           <ModalBody>
-          <Container>
+          <Container className="App">
         <h2>Logga in</h2>
         <Form className="form">
           <Col>
             <FormGroup>
-              <Label>Email</Label>
+              <Label>Användarnamn</Label>
               <Input
                 type="email"
                 name="email"
@@ -41,7 +41,7 @@ class ModalExample extends React.Component {
           </Col>
           <Col>
             <FormGroup>
-              <Label for="examplePassword">Password</Label>
+              <Label for="examplePassword">Lösenord</Label>
               <Input
                 type="password"
                 name="password"
@@ -54,10 +54,7 @@ class ModalExample extends React.Component {
         </Form>
       </Container>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
+          
         </Modal>
       </div>
     );

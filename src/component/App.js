@@ -15,26 +15,32 @@ import React from 'react';
 // } from 'reactstrap';
 import {
     BrowserRouter,
-    Route
+    Route,
+    Switch
 } from 'react-router-dom'; 
 import MainNavbar from './MainNavbar';
 import Home from './Home';
 import About from './About';
 import People from './People/People';
 import LoginForm from './Loginform/Loginform';
+import NotFound from './Notfound/Notfound';
 
 const App = () => (
     <div>
     <BrowserRouter>
+       
         <div>
             <MainNavbar /> 
+             <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" render={ () => <About title='Hej på dig' /> } />
             <Route path="/people" component={People} />
-            
+            <Route component={NotFound} />
+            </Switch>
         </div>
+        
     </BrowserRouter>
-    <LoginForm />
+    {/* <LoginForm /> */}
     </div>
 )
 
