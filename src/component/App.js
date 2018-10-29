@@ -22,8 +22,9 @@ import MainNavbar from './MainNavbar';
 import Home from './Home';
 import About from './About';
 import People from './People/People';
-import LoginForm from './Loginform/Loginform';
+
 import NotFound from './Notfound/Notfound';
+import RegisterUser from './RegisterUser/RegisterUser';
 
 const App = () => (
     <div>
@@ -34,6 +35,7 @@ const App = () => (
              <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" render={ () => <About title='Hej på dig' /> } />
+            <Route path="/register" component={RegisterUser} />
             <Route path="/people" component={People} />
             <Route component={NotFound} />
             </Switch>

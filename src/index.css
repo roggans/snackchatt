@@ -16,3 +16,8 @@ code {
 .main-content{
 background:#edeff0
 }
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 45px;
+}
