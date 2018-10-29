@@ -11,8 +11,9 @@ import {
    Row,
    Col,
   // Jumbotron,
-  // Button
+   Button
 } from 'reactstrap';
+import Loginform from './Loginform/Loginform';
 
 class Home extends Component {    
   
@@ -20,17 +21,27 @@ class Home extends Component {
     return (
       <div className="main-content home">
       <Container>
-        <Row>
+        {/* <Row>
           <Col>
             <h2>Snackchatt</h2></Col>
-            </Row><Row>
-              <p>Här kan du prata och köra tågchatten</p>
+            </Row> */}
+            <Row>
+              <Col>
+              <h3>Här kan du prata med kompisar i åldern 3-6år</h3>
+              <p>Om du inte redan har registrerat dig så börja med det.</p>
+              </Col>
             </Row>
-            <Col>
-            
-            </Col>
+            <Col-6>
+             <Button onClick={this.Loginform} color="primary" size="lg" block>Logga in</Button> {/*onclick dont work */}
+            </Col-6>
           
-          <p>Börja med att registrera dig</p>
+          <p>Klicka här för att logga in</p>
+          <hr />
+          <Col-6>
+            <Button color="primary" size="lg" block>Registrera dig</Button>
+            </Col-6>
+          
+          <p>Klicka här för att registrera dig</p>
           <hr />
           
         

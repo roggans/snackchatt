@@ -23,7 +23,7 @@ const MainNavbar = () => (
         <Navbar color="light" light expand="md">
         <NavbarBrand to="/">
         
-        React Warp Core
+        Snackchatt
         </NavbarBrand>
         
         <Nav className="ml-auto" navbar>
