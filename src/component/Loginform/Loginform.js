@@ -1,5 +1,16 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Container, FormGroup, Form, Col, Label, Input } from 'reactstrap';
+import { Button, 
+  Modal,
+   //ModalHeader,
+    ModalBody,
+     //ModalFooter,
+      Container,
+       FormGroup,
+        Form,
+         Col,
+          Label,
+           Input
+           } from 'reactstrap';
 import './Loginform.css'
 
 class ModalExample extends React.Component {

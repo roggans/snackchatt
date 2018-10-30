@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
     // Collapse,
-    Navbar,
+    //Navbar,
     // NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
+    //NavbarBrand,
+    //Nav,
+    //NavItem,
     //NavLink,
     Container,
     Row,

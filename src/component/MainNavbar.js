@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './trace.gif';
+//import logo from './trace.gif';
 import {NavLink} from 'react-router-dom';
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const MainNavbar = () => (
     <div>    
         <Navbar color="light" light expand="md">
         <NavbarBrand to="/">
-        <img alt="React" className="logo" src={logo} />
+        {/* <img alt="React" className="logo" src={logo} /> */}
         Snackchatt
         </NavbarBrand>
 
@@ -41,7 +41,11 @@ const MainNavbar = () => (
             </NavItem>
             <NavItem>
             <NavLink to="/register" activeStyle={{background: 'green'}}> Registrera användare </NavLink>                      
-            </NavItem> 
+            </NavItem>
+            <NavItem>
+            <NavLink to="/chat" activeStyle={{background: 'green'}}> Till chatten </NavLink>                      
+            </NavItem>
+             
             
         </Nav>
         

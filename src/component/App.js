@@ -22,6 +22,7 @@ import MainNavbar from './MainNavbar';
 import Home from './Home';
 import About from './About';
 import People from './People/People';
+import Chatt from './Chatt/Chatt';
 
 import NotFound from './Notfound/Notfound';
 import RegisterUser from './RegisterUser/RegisterUser';
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/about" render={ () => <About title='Hej på dig' /> } />
             <Route path="/register" component={RegisterUser} />
             <Route path="/people" component={People} />
+            <Route path="/chat" component={Chatt} />
             <Route component={NotFound} />
             </Switch>
         </div>
