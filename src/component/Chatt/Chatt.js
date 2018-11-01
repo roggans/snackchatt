@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Container, Row, Col,ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import openSocket from 'socket.io-client';
+import sand from './sand.jpg'
 import './Chatt.scss';
 
 class Chatt extends Component {    
@@ -36,40 +38,36 @@ class Chatt extends Component {
   changeMessage(e){
     this.setState({message: e.currentTarget.value});
   }
-  
-  /*(<div>
-     {this.messages.map((message, i) =>
-    <Row key = {i} className="pt-3">
-      <Col>
-        {message}
-      </Col>
-    </Row>
-  )}
-  <Row className="bg-secondary fixed-bottom p-4">
-    <Col>
-      <InputGroup>  
-        <Input placeholder="Write your message here" 
-          value={this.message} 
-          onChange={e => this.message = e.currentTarget.value} 
-          onKeyPress={e => e.key === 'Enter' && this.send()}
-        />
-        <InputGroupAddon addonType="append">
-          <Button color="primary" onClick={e => this.send()}>Send</Button>
-        </InputGroupAddon>
-      </InputGroup>
-    </Col>
-  </Row>
-  </div>
-  )*/
 
   render() {
-    return (
-      <div className="Chatt-div">
+    
+      return (
+      <Container>
+        {/* <img src={sand} alt="sand"/> */}
+        <Row className="Rowcolor">st
+          <Col xs="9" className="Grushogen">
+           {/* <div className="Chatt-div"> */}
       <div className="messages">
       {this.state.messages.map((message, i) => <div key={i}>{message}</div>)}
+      
+      <input id="m" autocomplete="off" value={this.state.message}  onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} /><button className="Sendbutton" onClick={e => this.send()}>Send</button>
       </div>
-      <input id="m" autocomplete="off" value={this.state.message}  onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} /><button onClick={e => this.send()}>Send</button>
-      </div>
+          </Col>
+          <Col xs="3">
+          <ListGroup>
+        <ListGroupItem>Roger och Kalle <Badge pill>14</Badge></ListGroupItem>
+        <ListGroupItem>Roger och Charlie <Badge pill>2</Badge></ListGroupItem>
+        <ListGroupItem>Roger och Fredrik <Badge pill>1</Badge></ListGroupItem>
+      </ListGroup>
+
+      </Col>
+        </Row>
+        <Row>
+        
+      
+        </Row>
+      </Container>
+     
     );
   }
 }
