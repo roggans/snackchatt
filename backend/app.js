@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 // Needed to be able to read req.body for post and put requests
 const bodyparser = require('body-parser');
-app.use(bodyparser);
+app.use(bodyparser.json());
 
 mongoose.connect('mongodb://localhost/snackchatt');
 
@@ -41,11 +41,11 @@ let UserSchema = mongoose.Schema({
 var User = mongoose.model('User', UserSchema);
 
 //Skapa en user
-let Rogge = new User({username: 'Tomme', password: '1234', email: 'rogge@snabel.com',avatar:10})
+/*let Rogge = new User({username: 'Tomme', password: '1234', email: 'rogge@snabel.com',avatar:10})
 console.log(Rogge.username);
 
 //spara användaren
-Rogge.save();
+Rogge.save();*/
 
 app.post('/register', async (req, res) => {
   // check that the username isn't taken already
