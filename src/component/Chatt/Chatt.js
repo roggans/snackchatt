@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col,ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import openSocket from 'socket.io-client';
-import sand from './sand.jpg'
+//import sand from './sand.jpg'
 import './Chatt.scss';
 
 class Chatt extends Component {    

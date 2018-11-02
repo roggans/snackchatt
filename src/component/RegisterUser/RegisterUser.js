@@ -23,6 +23,39 @@ import People from '../People/People'
 
 class RegisterUser extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            email:''
+        };
+    }
+
+    log(){
+        setTimeout(()=>console.log(this.state),1);
+    }
+
+    changeUsername(e){
+        this.setState({username: e.currentTarget.value});
+        this.log();
+    }
+
+    changeEmail(e){
+        this.setState({email: e.currentTarget.value});
+        this.log();
+    }
+
+    changePassword(e){
+        this.setState({password: e.currentTarget.value});
+        this.log();
+    }
+
+    changePasswordCheck(e){
+        this.setState({passwordCheck: e.currentTarget.value});
+        this.log();
+    }
+
     render() {
         return (
             <div className="main-content register">
@@ -39,25 +72,23 @@ class RegisterUser extends Component {
                         <Form>
                         <FormGroup>
                             <Label for="Username">Användarnamn</Label>
-                            <Input type="text" style = {{...this.passwordStyle}} id="password" placeholder="Karl pedal" />
-                            
+                            <Input type="text" id="username" placeholder="Karl pedal" value={this.state.username} onChange={e => this.changeUsername(e)}/>  
                             <FormFeedback valid>Sweet! that name is available</FormFeedback>
                             <FormText>Example help text that remains unchanged.</FormText>
                         </FormGroup>
                         <FormGroup>
-                            <Label for="email">Email</Label>
-                            
-                            <Input invalid id="email" placeholder="Email" />
+                            <Label for="email">Email</Label> 
+                            <Input type="text" id="email" placeholder="min E-adress" value={this.state.email} onChange={e => this.changeEmail(e)}/>
                             <FormFeedback>Ajdå adressen har redan en registrerad användare</FormFeedback>
                             <FormText>Example help text that remains unchanged.</FormText>
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">Lösenord</Label>
-                            <Input type="password" id="password" placeholder="Lösenord"  />
+                            <Input type="password" id="password" placeholder="Lösenord" value={this.state.password} onChange={e => this.changePassword(e)}  />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="password">Skriv lösenordet igen</Label>
-                            <Input type="password" id="password" placeholder="Upprepa lösenord"  />
+                            <Label for="passwordCheck">Skriv lösenordet igen</Label>
+                            <Input type="password" id="passwordCheck" placeholder="Upprepa lösenord" value={this.state.passwordCheck} onChange={e => this.changePasswordCheck(e)}  />
                         </FormGroup>
                     </Form>
                             
