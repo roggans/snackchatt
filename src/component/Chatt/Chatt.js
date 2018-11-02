@@ -44,15 +44,15 @@ class Chatt extends Component {
       return (
       <Container>
         {/* <img src={sand} alt="sand"/> */}
-        <Row className="Rowcolor">st
-          <Col xs="9" className="Grushogen">
-           {/* <div className="Chatt-div"> */}
+        <Row className="bg-secondary fixed-bottom p-4">
+          {/* <Col xs="9" className="Grushogen"> */}
+        
       <div className="messages">
       {this.state.messages.map((message, i) => <div key={i}>{message}</div>)}
       
       <input id="m" autocomplete="off" value={this.state.message}  onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} /><button className="Sendbutton" onClick={e => this.send()}>Send</button>
       </div>
-          </Col>
+          {/* </Col> */}
           <Col xs="3">
           <ListGroup>
         <ListGroupItem>Roger och Kalle <Badge pill>14</Badge></ListGroupItem>
