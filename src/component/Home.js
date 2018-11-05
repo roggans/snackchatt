@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import { Link } from "react-router-dom";
+
 import {
   // Collapse,
   //Navbar,
@@ -39,8 +41,9 @@ class Home extends Component {
         <hr className="my-2" />
         <p>Har du inget konto? Inga problem. Registrera dig genom att klicka på knappen nedan. Det tar endast 2minuter. Vi ses i chatten!</p>
         <p className="lead">
-          <Button color="primary">Registrera konto</Button>
+          <Button  tag={Link} to="/register" color="primary">Registrera konto</Button>
         </p>
+        
       
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
