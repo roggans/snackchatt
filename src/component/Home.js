@@ -20,8 +20,9 @@ import {
 import './Home.css';
 //import Loginform from './Loginform/Loginform';
  const style = {
-    background:'rgb(240, 228, 228)',
-    margin:'40px'
+    
+    
+    margin:'50px'
   };
 class Home extends Component {    
  
@@ -32,7 +33,7 @@ class Home extends Component {
       <Container className='Login-component'>
             <Row>
               <Col>
-              <Jumbotron className="bg-light" style ={style}>
+              <Jumbotron className="bg-light text-dark" style ={style}>
         <h1 className="display-3">Chatta med dina vänner</h1>
         <p className="lead">Detta är en chatt med inriktning till yngre. 3-6 år. Vänligen håll språket vårdat.</p>
         <hr className="my-2" />
