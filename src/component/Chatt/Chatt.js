@@ -42,9 +42,10 @@ class Chatt extends Component {
   render() {
     
       return (
+        <div className="Chatt-container">
       <Container>
         {/* <img src={sand} alt="sand"/> */}
-        <Row className="bg-secondary fixed-bottom p-4">
+        <Row className=" fixed-bottom p-4">
           {/* <Col xs="9" className="Grushogen"> */}
         
       <div className="messages">
@@ -67,7 +68,7 @@ class Chatt extends Component {
       
         </Row>
       </Container>
-     
+     </div>
     );
   }
 }
