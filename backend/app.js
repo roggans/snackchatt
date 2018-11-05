@@ -34,7 +34,7 @@ let UserSchema = mongoose.Schema({
         type: Boolean,
         default: false
       }*/
-    }
+    } 
   );
 
   // create a model from the schema
