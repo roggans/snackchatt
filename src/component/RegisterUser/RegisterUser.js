@@ -22,7 +22,7 @@ import {
 
 import People from '../People/People';
 import axios from 'axios';
-import Loginform from './Loginform/Loginform'
+// import Loginform from './Loginform/Loginform'
 
 class RegisterUser extends Component {
 
@@ -97,7 +97,7 @@ class RegisterUser extends Component {
                 alert("Ledsen! En användare med detta användarnamn finns redan! Pröva att byta till ett annat");
             }
             if(result.data.success === 'User created'){
-                {this.Loginform}
+                //{this.Loginform}
                 // Vad ska vi göra nu?
                 // Säga grattis eller kolla till din mail - gå till en inloggningsssida eller vad?
             }
