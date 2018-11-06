@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import './Loginform.css'
 
-class Loginform extends React.Component {
+class ModalExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,4 +73,4 @@ class Loginform extends React.Component {
   }
 }
 
-export default Loginform;
+export default ModalExample;
