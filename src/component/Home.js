@@ -13,9 +13,11 @@ import {
   // Jumbotron,
    Button
 } from 'reactstrap';
-//import Loginform from './Loginform/Loginform';
+import Loginform from './Loginform/Loginform';
 
 class Home extends Component {    
+
+ 
   
   render() {
     return (
@@ -32,8 +34,8 @@ class Home extends Component {
               </Col>
             </Row>
             <Col-6>
-             <Button onClick={this.Loginform} color="primary" size="lg" block>Logga in</Button> {/*onclick dont work */}
-            </Col-6>
+             <Button onClick={this.showModal} color="primary" size="lg" block>Logga in</Button> {/*onclick dont work */}
+            </Col-6><Loginform />
           
           <p>Klicka här för att logga in</p>
           <hr />

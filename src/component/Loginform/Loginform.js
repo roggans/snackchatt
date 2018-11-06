@@ -44,10 +44,10 @@ class ModalExample extends React.Component {
                   <FormGroup>
                     <Label>Användarnamn</Label>
                     <Input
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
-                      placeholder="myemail@email.com"
+                      type="text"
+                      name="text"
+                      id="Userinput"
+                      placeholder="Skriv ditt användarnamn här"
                     />
                   </FormGroup>
                 </Col>
@@ -57,8 +57,8 @@ class ModalExample extends React.Component {
                     <Input
                       type="password"
                       name="password"
-                      id="examplePassword"
-                      placeholder="********"
+                      id="Userpassword"
+                      placeholder="Skriv ditt lösenord här"
                     />
                   </FormGroup>
                 </Col>
