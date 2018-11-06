@@ -1,0 +1,10 @@
+.main-content {
+    background: url(./bg.jpg) no-repeat;
+    
+    height:100vh;
+  background-size: cover;
+}
+
+.main-content{
+    /* background:#edeff0 */
+    }

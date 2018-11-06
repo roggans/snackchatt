@@ -16,7 +16,7 @@ import {
     Input,
     FormFeedback,
     FormText,
-    // Jumbotron,
+ Jumbotron,
     Button
 } from 'reactstrap';
 
@@ -114,10 +114,10 @@ class RegisterUser extends Component {
             <div className="main-content register">
                 <Container>
                     <Row>
-                    <Col sm="12" md={{ size: 6, offset: 3 }}>
-                            <h2>Registrera dig/Ändra information</h2>
+                    <Col className="mt-5" sm="12" md={{ size: 6, offset: 3 }}>
+                            
                         </Col>
-                    </Row>
+                    </Row><Jumbotron><h2><center>Registrera dig/Ändra information</center></h2>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <People {...this.peopleProps}  />
@@ -156,8 +156,8 @@ class RegisterUser extends Component {
                     <Col sm="12" md={{ size: 12, offset: 4 }}>
                         <Button color="primary" size="lg" onClick={()=>this.handleSubmit()}>Skapa användare</Button>
                     </Col>
-                    <hr />
-                    <hr />
+                    
+                    </Jumbotron>
                 </Container>
             </div>
         );
