@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col,ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import openSocket from 'socket.io-client';
+<<<<<<< HEAD
 import EmojiPicker from 'emoji-picker-react';
 import 'emoji-picker-react/dist/universal/style.scss';
 //import sand from './sand.jpg'
+=======
+import sand from './sand.jpg'
+>>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
 import './Chatt.scss';
 
 class Chatt extends Component {    
@@ -44,7 +48,14 @@ class Chatt extends Component {
   render() {
     
       return (
+<<<<<<< HEAD
         <div className="Chatt-container">
+=======
+      <Container>
+        {/* <img src={sand} alt="sand"/> */}
+        <Row className="bg-secondary fixed-bottom p-4">
+          {/* <Col xs="9" className="Grushogen"> */}
+>>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
         
       <Container>
         <Row className=" fixed-bottom p-4">  
@@ -73,7 +84,7 @@ class Chatt extends Component {
       </Row>
        
       </Container>
-     </div>
+     
     );
   }
 }

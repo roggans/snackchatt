@@ -19,6 +19,7 @@ import {
     // Jumbotron,
     Button
 } from 'reactstrap';
+<<<<<<< HEAD
 
 import People from '../People/People';
 import axios from 'axios';
@@ -109,11 +110,18 @@ class RegisterUser extends Component {
         }
     }
 
+=======
+import People from '../People/People'
+
+class RegisterUser extends Component {
+
+>>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
     render() {
         return (
             <div className="main-content register">
                 <Container>
                     <Row>
+<<<<<<< HEAD
                     <Col sm="12" md={{ size: 6, offset: 3 }}>
                             <h2>Registrera dig/Ändra information</h2>
                         </Col>
@@ -158,7 +166,56 @@ class RegisterUser extends Component {
                     </Col>
                     <hr />
                     <hr />
+=======
+                        <Col>
+                            <h2>Registrera dig/Ändra information</h2></Col>
+                    </Row>
+                    <Row>
+                        <Col-6>
+                            <People />
+                        </Col-6>
+                        <Col-3>
+                        <Form>
+                        <FormGroup>
+                            <Label for="Username">Användarnamn</Label>
+                            <Input type="text" style = {{...this.passwordStyle}} id="password" placeholder="Karl pedal" />
+                            
+                            <FormFeedback valid>Sweet! that name is available</FormFeedback>
+                            <FormText>Example help text that remains unchanged.</FormText>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="email">Email</Label>
+                            
+                            <Input invalid id="email" placeholder="Email" />
+                            <FormFeedback>Ajdå adressen har redan en registrerad användare</FormFeedback>
+                            <FormText>Example help text that remains unchanged.</FormText>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">Lösenord</Label>
+                            <Input type="password" id="password" placeholder="Lösenord"  />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="password">Skriv lösenordet igen</Label>
+                            <Input type="password" id="password" placeholder="Upprepa lösenord"  />
+                        </FormGroup>
+                    </Form>
+                            
+                        </Col-3>
+                    </Row>
+                    <Col-6>
+                        <Button color="primary" size="lg" block>Skapa användare</Button> {/*onclick dont work */}
+                    </Col-6>
+
+                    <p>Klicka här för att skapa användaren</p>
+                    <hr />
+                    
+                    <hr />
+                   
+
+>>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
                 </Container>
+
+
             </div>
         );
     }
