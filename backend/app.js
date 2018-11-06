@@ -14,7 +14,9 @@ mongoose.connect('mongodb://localhost/snackchatt');
 let UserSchema = mongoose.Schema({
       username: {
         type: String,
-        unique: true
+        unique: true,   //check so username is unique and already is in database
+        require: true,
+        trim:true //remoev whitspace it user accidently typed in
       },
       password: String,
       email: {
@@ -34,7 +36,7 @@ let UserSchema = mongoose.Schema({
         type: Boolean,
         default: false
       }*/
-    } 
+    }
   );
 
   // create a model from the schema

@@ -16,13 +16,13 @@ import {
     Input,
     FormFeedback,
     FormText,
- Jumbotron,
+    // Jumbotron,
     Button
 } from 'reactstrap';
 
 import People from '../People/People';
 import axios from 'axios';
-import Loginform from './Loginform/Loginform'
+//import Loginform from './Loginform/Loginform'
 
 class RegisterUser extends Component {
 
@@ -97,7 +97,7 @@ class RegisterUser extends Component {
                 alert("Ledsen! En användare med detta användarnamn finns redan! Pröva att byta till ett annat");
             }
             if(result.data.success === 'User created'){
-                {this.Loginform}
+                //this.render({Loginform}     //jag vill visa loginformuläret men det vill inte react tydligen :( 
                 // Vad ska vi göra nu?
                 // Säga grattis eller kolla till din mail - gå till en inloggningsssida eller vad?
             }
@@ -114,10 +114,10 @@ class RegisterUser extends Component {
             <div className="main-content register">
                 <Container>
                     <Row>
-                    <Col className="mt-5" sm="12" md={{ size: 6, offset: 3 }}>
-                            
+                    <Col sm="12" md={{ size: 6, offset: 3 }}>
+                            <h2>Registrera dig/Ändra information</h2>
                         </Col>
-                    </Row><Jumbotron><h2><center>Registrera dig/Ändra information</center></h2>
+                    </Row>
                     <Row>
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <People {...this.peopleProps}  />
@@ -156,8 +156,8 @@ class RegisterUser extends Component {
                     <Col sm="12" md={{ size: 12, offset: 4 }}>
                         <Button color="primary" size="lg" onClick={()=>this.handleSubmit()}>Skapa användare</Button>
                     </Col>
-                    
-                    </Jumbotron>
+                    <hr />
+                    <hr />
                 </Container>
             </div>
         );
