@@ -9,6 +9,7 @@ export default class People extends Component {
     super(props);
     this.scaleFactor = 2; // a scale factor for how big the image should be shown
     this.currentPerson = 1;
+    this.props.messageFromPeople({currentPerson: this.currentPerson});
     this.state = {...this.personCutOut(this.currentPerson)};
   }
 
@@ -33,6 +34,7 @@ export default class People extends Component {
     this.currentPerson += direction;
     if(this.currentPerson < 1){ this.currentPerson = 55; }
     if(this.currentPerson > 55){ this.currentPerson = 1; }
+    this.props.messageFromPeople({currentPerson: this.currentPerson});
     // call personCutOut to cut out a single person
     this.setState(this.personCutOut());
   }
