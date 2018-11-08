@@ -60,12 +60,17 @@ class Chatt extends Component {
          
         
         <Row>
+          <Col className="InloggedUsers">
+          <p>Inloggade användare</p>
+          <p>Klicka på en användare du vill starta en egen chatt med.</p>
+          </Col>
          <Col className="d-flex justify-content-end mt-5">
           <ListGroup>
           <ListGroupItem>Aktiva Chattar</ListGroupItem>
-        <ListGroupItem>Roger och Kalle <Badge pill>14</Badge></ListGroupItem>
-        <ListGroupItem>Roger och Charlie <Badge pill>2</Badge></ListGroupItem>
-        <ListGroupItem>Roger och Fredrik <Badge pill>1</Badge></ListGroupItem>
+          <ListGroupItem>Grushögen #"General" <Badge pill>14</Badge></ListGroupItem>
+        <ListGroupItem>"Sandlåda" Roger och Kalle <Badge pill>14</Badge></ListGroupItem>
+        <ListGroupItem>"Sandlåda" Roger och Charlie <Badge pill>2</Badge></ListGroupItem>
+        <ListGroupItem>"Sandlåda" Roger och Fredrik <Badge pill>1</Badge></ListGroupItem>
       </ListGroup>
       </Col> </Row><Row><Col className="d-flex justify-content-end mt-5">
 <EmojiPicker preload/>

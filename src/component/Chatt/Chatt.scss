@@ -23,10 +23,11 @@
 .messages {
     width:1100px;
     background-color:lightblue;
-    padding-left:10px;
+    //padding-left:10px;
     border:2px solid black;
     max-height: 70vh;
     overflow: scroll;
+    
     
 }
 //message input field
@@ -44,3 +45,10 @@ $width_picker: 300px;
 $height_picker: 350px;
 $bg_picker: #f1f1f1;
 @import './node_modules/emoji-picker-react/dist/universal/style.scss'; 
+
+.InloggedUsers{
+    margin:auto;
+    width:100%;
+    height: 100px;
+    background-color: #fff;
+}
