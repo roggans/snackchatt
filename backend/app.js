@@ -2,7 +2,6 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3010;
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 
 // Needed to be able to read req.body for post and put requests
@@ -62,8 +61,6 @@ app.post('/register', async (req, res) => {
 });
 
 
-=======
->>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
 
 io.on('connection', function(socket){
   console.log('User connented');

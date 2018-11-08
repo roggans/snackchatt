@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Container, Row, Col,ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import openSocket from 'socket.io-client';
-<<<<<<< HEAD
 import EmojiPicker from 'emoji-picker-react';
 import 'emoji-picker-react/dist/universal/style.scss';
+import JSEMOJI from 'emoji-js';
 //import sand from './sand.jpg'
-=======
-import sand from './sand.jpg'
->>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
 import './Chatt.scss';
+
+//emoji set up
+let jsemoji = new JSEMOJI();
+// set the style to emojione (default - apple)
+jsemoji.img_set = 'emojione';
+// set the storage location for all emojis
+jsemoji.img_sets.emojione.path = 'https://cdn.jsdelivr.net/emojione/assets/3.0/png/32/';
 
 class Chatt extends Component {    
 
@@ -16,7 +20,10 @@ class Chatt extends Component {
     super(props);
     // message = meddelandet man håller på att skriva
     // messages = array med alla meddelanden
-    this.state = {message: '', messages: []};
+    this.state = {message: '',
+     messages: [],
+     emojiShown: false
+    };
 
     // skapa en ny socket
     //this.socket = openSocket('', {path: '/api/socket'});
@@ -45,17 +52,22 @@ class Chatt extends Component {
     this.setState({message: e.currentTarget.value});
   }
 
+  insertEmoji = (emojiCode) => {
+    /*this.setState({
+      emojiShown: !this.state.emojiShown
+    });*/
+    console.log(emojiCode)
+    emojiCode = parseInt(emojiCode, 16);
+    console.log(emojiCode);
+    let emoji = String.fromCodePoint(emojiCode);
+    this.setState({message: this.state.message + emoji});
+  }
+
   render() {
     
       return (
-<<<<<<< HEAD
         <div className="Chatt-container">
-=======
-      <Container>
-        {/* <img src={sand} alt="sand"/> */}
-        <Row className="bg-secondary fixed-bottom p-4">
-          {/* <Col xs="9" className="Grushogen"> */}
->>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
+        <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/>
         
       <Container>
         <Row className=" fixed-bottom p-4">  
@@ -84,12 +96,12 @@ class Chatt extends Component {
         <ListGroupItem>"Sandlåda" Roger och Fredrik <Badge pill>1</Badge></ListGroupItem>
       </ListGroup>
       </Col> </Row><Row><Col className="d-flex justify-content-end mt-5">
-<EmojiPicker preload/>
+{/* <EmojiPicker preload/> */}
       </Col>
       </Row>
        
       </Container>
-     
+     </div>
     );
   }
 }

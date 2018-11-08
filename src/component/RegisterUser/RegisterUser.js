@@ -19,11 +19,9 @@ import {
  Jumbotron,
     Button
 } from 'reactstrap';
-<<<<<<< HEAD
 
 import People from '../People/People';
 import axios from 'axios';
-// import Loginform from './Loginform/Loginform'
 
 class RegisterUser extends Component {
 
@@ -98,7 +96,6 @@ class RegisterUser extends Component {
                 alert("Ledsen! En användare med detta användarnamn finns redan! Pröva att byta till ett annat");
             }
             if(result.data.success === 'User created'){
-                //{this.Loginform}
                 // Vad ska vi göra nu?
                 // Säga grattis eller kolla till din mail - gå till en inloggningsssida eller vad?
             }
@@ -110,12 +107,6 @@ class RegisterUser extends Component {
         }
     }
 
-=======
-import People from '../People/People'
-
-class RegisterUser extends Component {
-
->>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
     render() {
         return (
             <div className="main-content register">
@@ -134,28 +125,28 @@ class RegisterUser extends Component {
                                 <FormGroup>
                                     <Label for="Username">Användarnamn</Label>
                                     <Input valid={this.state.usernameValid} invalid={!this.state.usernameValid && (this.state.username || this.state.triedToSubmit)} type="text" id="username" placeholder="Karl pedal" value={this.state.username} onChange={e => this.changeUsername(e)} />
-                                    <FormFeedback valid>Ditt namn är ledigt!</FormFeedback>
-                                    <FormFeedback invalid>Aj, välj ett annan namn</FormFeedback>
+                                    <FormFeedback valid>Bra val!</FormFeedback>
+                                    <FormFeedback invalid>Dåligt!</FormFeedback>
                                     <FormText>Example help text that remains unchanged.</FormText>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="email">Email</Label>
                                     <Input valid={this.state.emailValid} invalid={!this.state.emailValid && (this.state.email || this.state.triedToSubmit)} type="text" id="email" placeholder="min E-adress" value={this.state.email} onChange={e => this.changeEmail(e)} />
-                                    <FormFeedback valid>Godtjänt email adress</FormFeedback>
-                                    <FormFeedback invalid>Ej giltig email adress</FormFeedback>
+                                    <FormFeedback valid>Bra val!</FormFeedback>
+                                    <FormFeedback invalid>Dåligt!</FormFeedback>
                                     <FormText>Example help text that remains unchanged.</FormText>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="password">Lösenord</Label>
                                     <Input valid={this.state.passwordValid} invalid={!this.state.passwordValid && (this.state.password || this.state.triedToSubmit)}  type="password" id="password" placeholder="Lösenord" value={this.state.password} onChange={e => this.changePassword(e)} />
-                                    <FormFeedback valid>Ok lösenord</FormFeedback>
-                                    <FormFeedback invalid>Minst 6 tecken</FormFeedback>
+                                    <FormFeedback valid>Bra val!</FormFeedback>
+                                    <FormFeedback invalid>Dåligt!</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="passwordCheck">Skriv lösenordet igen</Label>
                                     <Input valid={this.state.passwordCheckValid && this.state.passwordCheck} invalid={!this.state.passwordCheckValid && (this.state.passwordCheck || this.state.triedToSubmit)}  type="password" id="passwordCheck" placeholder="Upprepa lösenord" value={this.state.passwordCheck} onChange={e => this.changePasswordCheck(e)} />
-                                    <FormFeedback valid>Lösenorden stämmer överrens.</FormFeedback>
-                                    <FormFeedback invalid>Lösenorden stämmer inte överrens</FormFeedback>
+                                    <FormFeedback valid>Bra val!</FormFeedback>
+                                    <FormFeedback invalid>Dåligt!</FormFeedback>
                                 </FormGroup>
                             </Form>
                         </Col>
@@ -166,8 +157,6 @@ class RegisterUser extends Component {
                     
                     </Jumbotron>
                 </Container>
-
-
             </div>
         );
     }
