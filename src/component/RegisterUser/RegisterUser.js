@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import {
     // Collapse,
     //Navbar,
@@ -22,6 +23,7 @@ import {
 
 import People from '../People/People';
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 // import Loginform from './Loginform/Loginform'
 
 class RegisterUser extends Component {
@@ -69,6 +71,8 @@ class RegisterUser extends Component {
         this.validation();
     }
 
+    
+   
 
     validation(){
         // perform all neccassary validations (after a short timeout so that state changes)
@@ -81,6 +85,7 @@ class RegisterUser extends Component {
             console.log(this.state);
         }, 1);
     }
+    
 
     async handleSubmit(){
         if(this.state.usernameValid && this.state.emailValid && this.state.passwordValid && this.state.passwordCheckValid) {
@@ -96,10 +101,10 @@ class RegisterUser extends Component {
             if(result.data.error === 'Username taken'){
                 alert("Ledsen! En användare med detta användarnamn finns redan! Pröva att byta till ett annat");
             }
-            if(result.data.success === 'User created'){
-                //{this.Loginform}
+            if(result.data.success === 'User created') {
                 // Vad ska vi göra nu?
                 // Säga grattis eller kolla till din mail - gå till en inloggningsssida eller vad?
+                this.props.history.push('/');
             }
             console.log("RESULT", result)
         }
@@ -125,8 +130,9 @@ class RegisterUser extends Component {
                         <Col sm={{ size: 'auto', offset: 1 }}>
                             <Form>
                                 <FormGroup>
-                                    <Label for="Username">Användarnamn</Label>
-                                    <Input valid={this.state.usernameValid} invalid={!this.state.usernameValid && (this.state.username || this.state.triedToSubmit)} type="text" id="username" placeholder="Karl pedal" value={this.state.username} onChange={e => this.changeUsername(e)} />
+                                    <Label for="username">Användarnamn</Label>
+                                    <Input valid={this.state.usernameValid} invalid={!this.state.usernameValid && (this.state.username || this.state.triedToSubmit)} 
+                                    type="text" id="username" placeholder="Karl pedal" value={this.state.username} onChange={e => this.changeUsername(e)} />
                                     <FormFeedback valid>Ditt namn är ledigt!</FormFeedback>
                                     <FormFeedback invalid>Aj, välj ett annan namn</FormFeedback>
                                     <FormText>Example help text that remains unchanged.</FormText>
@@ -164,4 +170,4 @@ class RegisterUser extends Component {
     }
 }
 
-export default RegisterUser;
+export default withRouter(RegisterUser);

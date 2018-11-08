@@ -20,13 +20,50 @@ import {
    Input
 } from 'reactstrap';
 import './Home.css';
+import axios from 'axios';
+import { withRouter } from "react-router-dom";
 //import Loginform from './Loginform/Loginform';
  const style = {
-    
-    
     margin:'50px'
   };
+
 class Home extends Component {    
+
+  constructor(props){
+    super(props);
+    this.state = {
+      LoginUsername: '',
+      LoginPassword: '',
+    }
+  }
+
+  usernameCheck(e) {
+    this.setState({ LoginUsername: e.currentTarget.value });
+  }
+
+  userPasswordCheck(e) {
+    this.setState({ LoginPassword: e.currentTarget.value});
+  }
+
+  async handleUserApproved(){
+    console.log(this.state.LoginPassword);
+    console.log(this.state.LoginUsername);
+    let toPost = {
+      username: this.state.LoginUsername,
+      password: this.state.LoginPassword
+    };
+    //kolla om användarnamn och lösenord stämmer med db
+    let result = await axios.post('/api/login', toPost);
+    console.log(result)
+    // för närvarande snabb "prototyp"-lösning på login
+    // (inte säker men låter oss ta reda på användarnamn så att 
+    // vi kan vidareutveckla chatten)
+    if(result.data.success === "Login ok"){
+      window.localStorage.loggedInUser = toPost.username;
+      console.log("SPARAT I LOCALSTORAGE");
+      this.props.history.push('/chat');
+    }
+  }
  
   render() {
     return (
@@ -47,14 +84,14 @@ class Home extends Component {
       
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="exampleEmail" className="mr-sm-2">Användarnamn</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="Kalle Anka" />
+          <Label for="userId" className="mr-sm-2">Användarnamn</Label>
+          <Input type="text" id="userId" placeholder="Kalle Anka" value={this.state.LoginUsername} onChange={e => this.usernameCheck(e)} />
         </FormGroup>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="examplePassword" className="mr-sm-2">Lösenord</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="Lösenord" />
+          <Label for="LoginPassword" className="mr-sm-2">Lösenord</Label> 
+          <Input type="password" id="userPassword" placeholder="Lösenord" value={this.state.userPassword} onChange={e => this.userPasswordCheck(e)} />
         </FormGroup>
-        <Button>Skicka</Button>
+        <Button onClick={()=>this.handleUserApproved()}>Skicka</Button>
       </Form>
               </Jumbotron>
               </Col>
@@ -67,4 +104,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

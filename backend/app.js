@@ -60,7 +60,16 @@ app.post('/register', async (req, res) => {
   res.json({success: 'User created'});
 });
 
-
+app.post('/login', async (req, res) => {
+  console.log(req.body.username, req.body.password);
+  let matchingUsers = await User.find(req.body);
+  if(matchingUsers.length < 1){
+    res.json({error: 'Login failed'});
+  }
+  else {
+    res.json({success: 'Login ok'});
+  }
+})
 
 io.on('connection', function(socket){
   console.log('User connented');
