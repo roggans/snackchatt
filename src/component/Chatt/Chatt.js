@@ -30,23 +30,43 @@ class Chatt extends Component {
     this.socket = openSocket.connect('http://localhost:3010');
 
     // få socket att lyssna på när servern/backend skickar 'chat message'
+
+    //------------------------------------------Roger testar--------------------------------------
     this.socket.on(
-      'chat message', 
-      (message) => {
-        // vi tar emot meddelande från servern
-        // och lägg till det nya meddelandet i state.messages
+           'chat message', 
+           (message) => {
+             // vi tar emot meddelande från servern
+             // och lägg till det nya meddelandet i state.messages
+    
+             this.setState({messages: [...this.state.messages, message]});
+           }
+         );
+       }
+//-----------------------------nedan fungerar--------utkommenterat för test--------------
+  //   this.socket.on(
+  //     'chat message', 
+  //     (message) => {
+  //       // vi tar emot meddelande från servern
+  //       // och lägg till det nya meddelandet i state.messages
 
-        this.setState({messages: [...this.state.messages, message]});
-      }
-    );
-  }
-
+  //       this.setState({messages: [...this.state.messages, message]});
+  //     }
+  //   );
+  // }
   send(){
-    // skicka meddelande till servern
     this.socket.emit('chat message', this.state.message);
-    // nollställ inmatningsfältet
-    this.setState({message: ''});
+    this.setState({message:''});
   }
+ 
+
+
+  //orginal send()---utkommenterat för test
+  // send(){
+  //   // skicka meddelande till servern
+  //   this.socket.emit('chat message', this.state.message);
+  //   // nollställ inmatningsfältet
+  //   this.setState({message: ''});
+  // }
 
   changeMessage(e){
     this.setState({message: e.currentTarget.value});
