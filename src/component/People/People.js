@@ -7,9 +7,11 @@ export default class People extends Component {
   
   constructor(props){
     super(props);
-    this.scaleFactor = 2; // a scale factor for how big the image should be shown
-    this.currentPerson = 1;
-    this.props.messageFromPeople({currentPerson: this.currentPerson});
+    this.scaleFactor = props.scale || 2; // a scale factor for how big the image should be shown
+    this.currentPerson = props.avatar || 1;
+    this.edit = this.props.edit || false;
+    this.callOnChange = this.props.messageFromPeople || function(){}
+    this.callOnChange({currentPerson: this.currentPerson});
     this.state = {...this.personCutOut(this.currentPerson)};
   }
 
@@ -34,7 +36,7 @@ export default class People extends Component {
     this.currentPerson += direction;
     if(this.currentPerson < 1){ this.currentPerson = 55; }
     if(this.currentPerson > 55){ this.currentPerson = 1; }
-    this.props.messageFromPeople({currentPerson: this.currentPerson});
+    this.callOnChange({currentPerson: this.currentPerson});
     // call personCutOut to cut out a single person
     this.setState(this.personCutOut());
   }
@@ -45,8 +47,10 @@ export default class People extends Component {
         <div className="People mb-3 mt-5" style={this.state.peopleStyle}>
           <img style={this.state.peopleImageStyle} alt="people" src={people}/>
         </div>
-        <button className="btn btn-primary" style={{marginRight:62}} onClick = {e => this.prev()}>&lt;</button>
-        <button className="btn btn-primary" onClick = {e => this.next()}>&gt;</button>
+        {this.edit && <div>
+          <button className="btn btn-primary" style={{marginRight:62}} onClick = {e => this.prev()}>&lt;</button>
+          <button className="btn btn-primary" onClick = {e => this.next()}>&gt;</button>
+        </div>}
     </div>
     );
   }

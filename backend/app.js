@@ -67,20 +67,32 @@ app.post('/login', async (req, res) => {
     res.json({error: 'Login failed'});
   }
   else {
-    res.json({success: 'Login ok'});
+    let user = matchingUsers[0];
+    delete user.password;
+    res.json({success: 'Login ok', userObject: user});
   }
 })
 
-io.on('connection', function(socket){
-  console.log('User connented');
-  // ta emot ett meddelande från en klient/socket
-  socket.on('chat message', function(message){
-    console.log('message: ', message);
-    // skicka alla meddelanden till alla klienter/socket
-    io.emit('chat message', message);
-  });
-});
+ // When a new socket/client connects
+ io.on('connection', function(socket){
+
+   // We get the socket connecting: socket
+   console.log('User connented');
+
+   // We add event listeners to the socket 
+   // that listens to messages from the socket/client
+   socket.on('chat message', function(message){
+     // We can choose to send a message to ALL connected socket
+     // using io.emit:
+     io.emit('chat message', message);
+   });
+
+ });
+//------------------------------Rogertest------------------------------------------//
+
+
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
+ 

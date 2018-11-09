@@ -59,9 +59,24 @@ class Home extends Component {
     // (inte säker men låter oss ta reda på användarnamn så att 
     // vi kan vidareutveckla chatten)
     if(result.data.success === "Login ok"){
-      window.localStorage.loggedInUser = toPost.username;
+      window.localStorage.loggedInUser = JSON.stringify(result.data.userObject);
       console.log("SPARAT I LOCALSTORAGE");
       this.props.history.push('/chat');
+
+      // EXEMPEL:
+      // Var än du vill kolla om användaren är inloggad och uppgifter som username, e-post, avatar etc:
+      let user = JSON.parse(window.localStorage.loggedInUser);
+      if(user){
+        // inloggad
+        console.log('user', user, user.username);
+      }
+      else {
+        // inte inloggad (hindra kanske från att gå till chatt etc)
+      }
+
+      // Om du vill logga ut användaren
+      // delete window.localStorage.loggedInUser
+
     }
   }
  

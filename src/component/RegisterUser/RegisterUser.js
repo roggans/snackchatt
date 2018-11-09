@@ -42,6 +42,8 @@ class RegisterUser extends Component {
             passwordCheckValid: false
         };
         this.peopleProps = {
+            edit: true,
+            avatar: Math.floor(Math.random()*55) + 1,
             messageFromPeople: (obj) => {
                 this.setState({avatar: obj.currentPerson});
                 this.validation();
