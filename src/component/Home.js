@@ -24,7 +24,9 @@ import axios from 'axios';
 import { withRouter } from "react-router-dom";
 //import Loginform from './Loginform/Loginform';
  const style = {
-    margin:'50px'
+    margin:'50px',
+    //backgroundColor: 'rgba(52, 52, 52, 0.8)'
+    
   };
 
 class Home extends Component {    

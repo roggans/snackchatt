@@ -44,7 +44,7 @@ class Chatt extends Component {
           // if we move to user the main body scroll:
           // remove current line and replace with
            window.scrollTo(0, 1000000000);
-          //document.querySelector('.messages').scrollTop = 1000000000;
+         // document.querySelector('.messages').scrollTop = 1000000000;
         }, 10);
       }
     );
@@ -87,19 +87,20 @@ class Chatt extends Component {
         
       <Container>
       <Row>
-          <Col className="d-flex justify-content-end mt-5"> 
-          <ListGroup>
+          <Col className="gubben"> 
+          <People scale={2} />
+          {/* <ListGroup>
           <ListGroupItem>Aktiva Chattar</ListGroupItem>
         <ListGroupItem>Roger och Kalle <Badge pill>14</Badge></ListGroupItem>
         <ListGroupItem>Roger och Charlie <Badge pill>2</Badge></ListGroupItem>
         <ListGroupItem>Roger och Fredrik <Badge pill>1</Badge></ListGroupItem>
-      </ListGroup>
+      </ListGroup> */}
       </Col>
       <Col>
       <Row>
-      <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/>
+      {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
         </Row>
-        <Row className=" fixed-bottom p-4">  
+        <Row className=" fixed-bottom p-4 justify-content-end">  
       <div className="messages">
       
       {this.state.messages.map((message, i) => <div className="message" key={i}><People scale={1} avatar={message.user.avatar} /> {message.user.username}: {message.message}</div>)}</div>
