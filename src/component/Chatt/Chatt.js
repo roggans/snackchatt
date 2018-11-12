@@ -72,7 +72,7 @@ class Chatt extends Component {
   changeMessage(e) {        ////Check if input is a "fult ord"
     if(e.currentTarget.value==="katt"){
       
-        alert('buse')
+        alert('Inga fula ord i chatten!')
         this.setState({ message: '' })
       
       
@@ -94,6 +94,9 @@ class Chatt extends Component {
     this.setState({ message: this.state.message + emoji });
   }
 
+//läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
+  user = JSON.parse(window.localStorage.loggedInUser);
+  
   render() {
 
     return (
@@ -102,48 +105,50 @@ class Chatt extends Component {
         <Container fluid>
           <Row>
             <Col xs="3" className="activeUsers">
+            <h3 className="activeuserlist">Aktiva användare</h3>
             <ChatList
-    className='chat-list'
-    dataSource={[
-        {
-            avatar: 'https://facebook.github.io/react/img/logo.svg',
-            alt: 'Reactjs',
-            title: 'Facebook',
-            subtitle: 'What are you doing?',
-            date: new Date(),
-            unread: 0,
-        },
-        {
-            avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-            alt: 'Reactjs',
-            title: 'Facebook',
-            subtitle: 'What are you doing?',
-            date: new Date(),
-            unread: 0,
-        },
-        {
-            avatar: 'https://facebook.github.io/react/img/logo.svg',
-            alt: 'Reactjs',
-            title: 'Facebook',
-            subtitle: 'What are you doing?',
-            date: new Date(),
-            unread: 0,
-        },
-        {
-            avatar: 'https://facebook.github.io/react/img/logo.svg',
-            alt: 'Reactjs',
-            title: 'Facebook',
-            subtitle: 'What are you doing?',
-            date: new Date(),
-            unread: 0,
-        },
-        
-    ]} />
+              className='chat-list'
+              dataSource={[
+                  {
+                      avatar: <People scale={1} avatar={this.user.avatar} /> ,
+                      alt: 'Reactjs',
+                      title: this.user.username,
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                      alt: 'Reactjs',
+                      title: 'Facebook',
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://facebook.github.io/react/img/logo.svg',
+                      alt: 'Reactjs',
+                      title: 'Facebook',
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://facebook.github.io/react/img/logo.svg',
+                      alt: 'Reactjs',
+                      title: 'Facebook',
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  
+              ]} />
             </Col>
            
               {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
 
               <Col className="">
+              <h3 className="activeuserlist">Gemensam Chatt</h3>    {/*ska ändra namn till den chatt du är i*/}
                 <div className="messages">
                 <MessageBox
                   position={'left'}
@@ -175,18 +180,49 @@ class Chatt extends Component {
 
                   {this.state.messages.map((message, i) => <div className="speech-bubble" key={i}><People scale={1} avatar={message.user.avatar} /> {message.user.username}: {message.message}</div>)}</div>
                 <div className="InputAndButton">
-                  <input id="m" autocomplete="off"  maxlength="20" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
+                  <input id="m" autoComplete="off"  maxLength="20" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
                   <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
                 </div>
               </Col>
               <Col xs="3">
-            <ListGroup>
-                <ListGroupItem>Cras justo odio</ListGroupItem>
-                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem>Morbi leo risus</ListGroupItem>
-                <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
-              </ListGroup>
+              <h3 className="activeuserlist">Mina chatt-rum</h3>
+              <ChatList
+              className='chat-list'
+              dataSource={[
+                  {
+                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                      alt: 'Reactjs',
+                      title: 'Gemensam Chatt',
+                      subtitle: 'Alla chattar med alla!',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                      alt: 'Reactjs',
+                      title: 'Mitt eget chattrum',
+                      subtitle: 'Bjud in vem du vill',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                      alt: 'Reactjs',
+                      title: 'Jannes chattrum',
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  {
+                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                      alt: 'Reactjs',
+                      title: 'Kalle ankas chattrum',
+                      subtitle: 'What are you doing?',
+                      date: new Date(),
+                      unread: 0,
+                  },
+                  
+              ]} />
             </Col>
             
 

@@ -1,0 +1,10 @@
+.navlinkstyle{
+    padding:5px;
+    border-radius: 10px;
+    margin:5px;
+   
+}
+
+.activeClassName{
+    background-color: coral;
+}

@@ -2,6 +2,8 @@ import React from 'react';
 //import logo from './trace.gif';
 import {NavLink} from 'react-router-dom';
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './MainNavbar.css';
+
 
 import {
      // Collapse,
@@ -31,7 +33,7 @@ const MainNavbar = () => (
         
         <Nav className="ml-auto" navbar>
             <NavItem>
-             <NavLink exact to="/" activeStyle={{background: 'tomato'}}>Startsida</NavLink> 
+             <NavLink className="navlinkstyle activeClassName" exact to="/">Startsida</NavLink> 
             </NavItem>
             <NavItem>
             <NavLink to="/about" activeStyle={{background: 'green'}}> About </NavLink>
