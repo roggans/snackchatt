@@ -33,19 +33,16 @@ const MainNavbar = () => (
         
         <Nav className="ml-auto" navbar>
             <NavItem>
-             <NavLink className="navlinkstyle activeClassName" exact to="/">Startsida</NavLink> 
+             <NavLink className="navlinkstyle" exact to="/">Startsida</NavLink> 
             </NavItem>
             <NavItem>
-            <NavLink to="/about" activeStyle={{background: 'green'}}> About </NavLink>
+            <NavLink to="/about" className="navlinkstyle"> About </NavLink>
             </NavItem>
             <NavItem>
-            <NavLink to="/people" activeStyle={{background: 'green'}}> People </NavLink>
+            <NavLink to="/register" className="navlinkstyle"> Registrera användare </NavLink>                      
             </NavItem>
             <NavItem>
-            <NavLink to="/register" activeStyle={{background: 'green'}}> Registrera användare </NavLink>                      
-            </NavItem>
-            <NavItem>
-            <NavLink to="/chat" activeStyle={{background: 'green'}}> Till chatten </NavLink>                      
+            <NavLink to="/chat" className="navlinkstyle"> Till chatten </NavLink>                      
             </NavItem>
              
             

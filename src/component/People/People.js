@@ -22,8 +22,8 @@ export default class People extends Component {
     // console.log(this.currentPerson, rowNo, colNo) // comment this in to understand the conversion
     // calculate how to cut off the big image to an indiviual person
     return {
-      peopleStyle: {marginLeft: 10, overflow: 'hidden', height: 125 * this.scaleFactor, width: 61 * this.scaleFactor},
-      peopleImageStyle: {width: 1000 * this.scaleFactor, marginTop: (-355 - 162 * rowNo) * this.scaleFactor, marginLeft: (-14 - 64.75 * colNo - extraColOffset) * this.scaleFactor}
+      peopleStyle: {marginLeft: 10, overflow: 'hidden', height: (this.props.head ? 50 : 125) * this.scaleFactor, width: (this.props.head ? 50 : 61) * this.scaleFactor},
+      peopleImageStyle: {width: 1000 * this.scaleFactor, marginTop: (-355 - 162 * rowNo) * this.scaleFactor, marginLeft: (-14 - 64.75 * colNo - extraColOffset - (this.props.head ? 7 : 0)) * this.scaleFactor}
     };
   }
 
@@ -44,7 +44,7 @@ export default class People extends Component {
   render(){ 
     return (
       <div>
-        <div className="People mb-3 mt-5" style={this.state.peopleStyle}>
+        <div className={'People ' + (this.props.className ? this.props.className : "mb-3 mt-5")} style={this.state.peopleStyle}>
           <img style={this.state.peopleImageStyle} alt="people" src={people}/>
         </div>
         {this.edit && <div>

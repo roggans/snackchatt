@@ -2,9 +2,24 @@
     padding:5px;
     border-radius: 10px;
     margin:5px;
-   
+    
+    
+}
+a:link {
+    background-color: white;
 }
 
+a:visited {
+    background-color: lightgreen;
+}
+
+a:hover {
+    background-color: lightgreen;
+}
+
+a:active {
+    background-color: hotpink;
+} 
 .activeClassName{
     background-color: coral;
 }

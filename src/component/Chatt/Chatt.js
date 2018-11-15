@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import { ChatItem, MessageBox, SystemMessage,SideBar,Avatar,MessageList,Button, ChatList } from 'react-chat-elements';
+import { ChatItem, MessageBox, SystemMessage, SideBar, Avatar, MessageList, Button, ChatList } from 'react-chat-elements';
 import 'react-chat-elements/dist/main.css';
 import openSocket from 'socket.io-client';
 import EmojiPicker from 'emoji-picker-react';
@@ -10,6 +10,7 @@ import People from '../People/People';
 //import sand from './sand.jpg'
 import './Chatt.scss';
 import InputWordCheck from '../InputWordCheck/InputWordCheck';
+import ActiveUserList from '../ActiveUserList/ActiveUserList';
 
 //emoji set up
 let jsemoji = new JSEMOJI();
@@ -58,7 +59,8 @@ class Chatt extends Component {
     // skicka meddelande till servern
     this.socket.emit('chat message', {
       user: JSON.parse(window.localStorage.loggedInUser),
-      message: this.state.message
+      message: this.state.message,
+
     });
 
     // nollställ inmatningsfältet
@@ -67,20 +69,20 @@ class Chatt extends Component {
   }
 
 
-  
+
 
   changeMessage(e) {        ////Check if input is a "fult ord"
-    if(e.currentTarget.value==="katt"){
-      
-        alert('Inga fula ord i chatten!')
-        this.setState({ message: '' })
-      
-      
-    }else 
-        this.setState({ message: e.currentTarget.value })
-      
-      
-    
+    if (e.currentTarget.value === "katt") {
+
+      alert('Inga fula ord i chatten!')
+      this.setState({ message: '' })
+
+
+    } else
+      this.setState({ message: e.currentTarget.value })
+
+
+
   }
 
   insertEmoji = (emojiCode) => {
@@ -94,9 +96,9 @@ class Chatt extends Component {
     this.setState({ message: this.state.message + emoji });
   }
 
-//läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
+  //läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
   user = JSON.parse(window.localStorage.loggedInUser);
-  
+
   render() {
 
     return (
@@ -105,126 +107,67 @@ class Chatt extends Component {
         <Container fluid>
           <Row>
             <Col xs="3" className="activeUsers">
-            <h3 className="activeuserlist">Aktiva användare</h3>
-            <ChatList
-              className='chat-list'
-              dataSource={[
-                  {
-                      avatar: <People scale={1} avatar={this.user.avatar} /> ,
-                      alt: 'Reactjs',
-                      title: this.user.username,
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
-                  },
-                  {
-                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                      alt: 'Reactjs',
-                      title: 'Facebook',
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
-                  },
-                  {
-                      avatar: 'https://facebook.github.io/react/img/logo.svg',
-                      alt: 'Reactjs',
-                      title: 'Facebook',
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
-                  },
-                  {
-                      avatar: 'https://facebook.github.io/react/img/logo.svg',
-                      alt: 'Reactjs',
-                      title: 'Facebook',
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
-                  },
-                  
-              ]} />
+              <h3 className="activeuserlist">Aktiva användare</h3>
+              <ActiveUserList />
             </Col>
-           
-              {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
 
-              <Col className="">
+            {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
+
+            <Col className="">
               <h3 className="activeuserlist">Gemensam Chatt</h3>    {/*ska ändra namn till den chatt du är i*/}
-                <div className="messages">
-                <MessageBox
-                  position={'left'}
-                  type={'text'}
-                  text={this.state.messages.map((message, i) => <div className="speech-bubble" key={i}>
-                  <People scale={1} avatar={message.user.avatar} /> {message.user.username}: {message.message}</div>)}
-                  />
-            
-               <MessageBox
-                  position={'right'}
-                  type={'text'}
-                  avatar={'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg'}
-                  text={this.state.messages.map((message, i) => <div className="speech-bubble" key={i}>
-                  <People scale={1} avatar={message.user.avatar} /> {message.user.username}: {message.message}</div>)}
-                  />
-     <SystemMessage
-              text={'Chatten är avslutad'}/>
-
-              
-<Avatar
-    src={'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg'}
-    alt={'logo'}
-    size="large"
-    type="circle flexible"/>
-             
-              
-<Button
-    text={'click me!'} />
-
-                  {this.state.messages.map((message, i) => <div className="speech-bubble" key={i}><People scale={1} avatar={message.user.avatar} /> {message.user.username}: {message.message}</div>)}</div>
-                <div className="InputAndButton">
-                  <input id="m" autoComplete="off"  maxLength="20" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
-                  <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
-                </div>
-              </Col>
-              <Col xs="3">
+              <div className="messages">
+                 {this.state.messages.map((message, i) => <div key={i} className="display-message"> 
+                    <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
+                    <p className="mb-1"><b>{message.user.username}</b></p>
+                    <p className="mb-2">{message.message}</p>
+                  </div>)}
+              </div>
+              <div className="InputAndButton">
+                <input id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
+                <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
+              </div>
+            </Col>
+            <Col xs="3">
               <h3 className="activeuserlist">Mina chatt-rum</h3>
               <ChatList
-              className='chat-list'
-              dataSource={[
+                className='chat-list'
+                dataSource={[
                   {
                     avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                      alt: 'Reactjs',
-                      title: 'Gemensam Chatt',
-                      subtitle: 'Alla chattar med alla!',
-                      date: new Date(),
-                      unread: 0,
+                    alt: 'Reactjs',
+                    title: 'Gemensam Chatt',
+                    subtitle: 'Alla chattar med alla!',
+                    date: new Date(),
+                    unread: 0,
                   },
                   {
-                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                      alt: 'Reactjs',
-                      title: 'Mitt eget chattrum',
-                      subtitle: 'Bjud in vem du vill',
-                      date: new Date(),
-                      unread: 0,
+                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                    alt: 'Reactjs',
+                    title: 'Mitt eget chattrum',
+                    subtitle: 'Bjud in vem du vill',
+                    date: new Date(),
+                    unread: 0,
                   },
                   {
-                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                      alt: 'Reactjs',
-                      title: 'Jannes chattrum',
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
+                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                    alt: 'Reactjs',
+                    title: 'Jannes chattrum',
+                    subtitle: 'What are you doing?',
+                    date: new Date(),
+                    unread: 0,
                   },
                   {
-                      avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                      alt: 'Reactjs',
-                      title: 'Kalle ankas chattrum',
-                      subtitle: 'What are you doing?',
-                      date: new Date(),
-                      unread: 0,
+                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
+                    alt: 'Reactjs',
+                    title: 'Kalle ankas chattrum',
+                    subtitle: 'What are you doing?',
+                    date: new Date(),
+                    unread: 0,
                   },
-                  
-              ]} />
+
+                ]} />
             </Col>
-            
+
 
           </Row>
         </Container>
