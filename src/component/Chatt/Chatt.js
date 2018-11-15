@@ -11,6 +11,7 @@ import People from '../People/People';
 import './Chatt.scss';
 import InputWordCheck from '../InputWordCheck/InputWordCheck';
 import ActiveUserList from '../ActiveUserList/ActiveUserList';
+import Activechatrooms from '../Activechatrooms/Activechatrooms';
 
 //emoji set up
 let jsemoji = new JSEMOJI();
@@ -109,6 +110,9 @@ class Chatt extends Component {
             <Col xs="3" className="activeUsers">
               <h3 className="activeuserlist">Aktiva användare</h3>
               <ActiveUserList />
+              <ActiveUserList />
+              <ActiveUserList />
+              <ActiveUserList />
             </Col>
 
             {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
@@ -120,6 +124,7 @@ class Chatt extends Component {
                     <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
                     <p className="mb-1"><b>{message.user.username}</b></p>
                     <p className="mb-2">{message.message}</p>
+                    <hr></hr>
                   </div>)}
               </div>
               <div className="InputAndButton">
@@ -129,43 +134,9 @@ class Chatt extends Component {
             </Col>
             <Col xs="3">
               <h3 className="activeuserlist">Mina chatt-rum</h3>
-              <ChatList
-                className='chat-list'
-                dataSource={[
-                  {
-                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                    alt: 'Reactjs',
-                    title: 'Gemensam Chatt',
-                    subtitle: 'Alla chattar med alla!',
-                    date: new Date(),
-                    unread: 0,
-                  },
-                  {
-                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                    alt: 'Reactjs',
-                    title: 'Mitt eget chattrum',
-                    subtitle: 'Bjud in vem du vill',
-                    date: new Date(),
-                    unread: 0,
-                  },
-                  {
-                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                    alt: 'Reactjs',
-                    title: 'Jannes chattrum',
-                    subtitle: 'What are you doing?',
-                    date: new Date(),
-                    unread: 0,
-                  },
-                  {
-                    avatar: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg',
-                    alt: 'Reactjs',
-                    title: 'Kalle ankas chattrum',
-                    subtitle: 'What are you doing?',
-                    date: new Date(),
-                    unread: 0,
-                  },
-
-                ]} />
+              <Activechatrooms roomname="Gemensam chat"/>
+              <Activechatrooms roomname="Kalle Ankas rum"/>
+              <Activechatrooms roomname="Jan banans rum"/>
             </Col>
 
 
