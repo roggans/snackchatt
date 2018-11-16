@@ -91,9 +91,9 @@ class Home extends Component {
               <Col>
               <Jumbotron className="bg-light text-dark" style ={style}>
         <h1 className="display-3">Chatta med dina vänner</h1>
-        <p className="lead">Detta är en chatt med inriktning till yngre. 3-6 år. Vänligen håll språket vårdat.</p>
+        <p className="lead">Detta är en chatt med inriktning till yngre. 6-12 år. Vänligen håll språket vårdat.</p>
         <hr className="my-2" />
-        <p>Har du inget konto? Inga problem. Registrera dig genom att klicka på knappen nedan. Det tar endast 2minuter. Vi ses i chatten!</p>
+        <p>Har du inget konto? Inga problem. Registrera dig genom att klicka på knappen nedan. Det tar endast 2 minuter. Vi ses i chatten!</p>
         <p className="lead">
           <Button  tag={Link} to="/register" color="primary">Registrera konto</Button>
         </p>
@@ -102,7 +102,7 @@ class Home extends Component {
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="userId" className="mr-sm-2">Användarnamn</Label>
-          <Input type="text" id="userId" placeholder="Kalle Anka" value={this.state.LoginUsername} onChange={e => this.usernameCheck(e)} />
+          <Input type="text" id="userId" placeholder="Vad heter du?" value={this.state.LoginUsername} onChange={e => this.usernameCheck(e)} />
         </FormGroup>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="LoginPassword" className="mr-sm-2">Lösenord</Label> 

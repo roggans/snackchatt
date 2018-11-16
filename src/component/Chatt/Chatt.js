@@ -12,6 +12,7 @@ import './Chatt.scss';
 import InputWordCheck from '../InputWordCheck/InputWordCheck';
 import ActiveUserList from '../ActiveUserList/ActiveUserList';
 import Activechatrooms from '../Activechatrooms/Activechatrooms';
+import Topinfobar from '../Topinfobar/Topinfobar';
 
 //emoji set up
 let jsemoji = new JSEMOJI();
@@ -73,7 +74,7 @@ class Chatt extends Component {
 
 
   changeMessage(e) {        ////Check if input is a "fult ord"
-    if (e.currentTarget.value === "katt") {
+    if (e.currentTarget.value.toLowerCase() === "jävla") {
 
       alert('Inga fula ord i chatten!')
       this.setState({ message: '' })
@@ -97,6 +98,21 @@ class Chatt extends Component {
     this.setState({ message: this.state.message + emoji });
   }
 
+   // Show an element
+ show = function (elem) {
+	elem.classList.add('is-visible');
+};
+
+// Hide an element
+ hide = function (elem) {
+	elem.classList.remove('is-visible');
+};
+
+// Toggle element visibility
+ toggle = function (elem) {
+	elem.classList.toggle('is-visible');
+};
+
   //läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
   user = JSON.parse(window.localStorage.loggedInUser);
 
@@ -104,21 +120,21 @@ class Chatt extends Component {
 
     return (
       <div className="Chatt-container">
-
+<Topinfobar />
         <Container fluid>
           <Row>
             <Col xs="3" className="activeUsers">
-              <h3 className="activeuserlist">Aktiva användare</h3>
+              {/* <h3 className="activeuserlist">Aktiva användare</h3> */}
               <ActiveUserList />
               <ActiveUserList />
               <ActiveUserList />
               <ActiveUserList />
             </Col>
 
-            {/* <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
+            
 
-            <Col className="">
-              <h3 className="activeuserlist">Gemensam Chatt</h3>    {/*ska ändra namn till den chatt du är i*/}
+            <Col xs="6" className="">
+              {/* <h3 className="activeuserlist">Gemensam Chatt</h3>    ska ändra namn till den chatt du är i */}
               <div className="messages">
                  {this.state.messages.map((message, i) => <div key={i} className="display-message"> 
                     <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
@@ -127,20 +143,34 @@ class Chatt extends Component {
                     <hr></hr>
                   </div>)}
               </div>
-              <div className="InputAndButton">
-                <input id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
-                <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
-              </div>
+              
+              
             </Col>
             <Col xs="3">
-              <h3 className="activeuserlist">Mina chatt-rum</h3>
+              {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
               <Activechatrooms roomname="Gemensam chat"/>
               <Activechatrooms roomname="Kalle Ankas rum"/>
               <Activechatrooms roomname="Jan banans rum"/>
             </Col>
+            </Row>
+            <Row>
+              <Col xs="12">
 
+               
+                
+                <div className="text-center mt-4">
+                <input className="InputAndButton" id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
+                <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
+                
+                <button>😀</button>
+                </div>
+                <div className="is-visible"><EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
+               </div> 
+              </Col>
+            </Row>
+            
 
-          </Row>
+          
         </Container>
       </div>
     );

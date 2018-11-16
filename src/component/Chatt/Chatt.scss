@@ -1,5 +1,6 @@
 .Chatt-container{
     background: url(../bg1.jpg) no-repeat;
+
     
     height:100vh;
   background-size: cover;
@@ -17,15 +18,6 @@
     overflow-y: scroll;
     
 }
-//message input field
-// .InputAndButton{
-//   #m{
-      
-//       width: 800px;
-//   }
-//    width: 100%;
-    
-// }
 
 $size_emoji: 30px;
 $width_picker: 300px;
@@ -53,4 +45,14 @@ text-align: center;
         border-radius: 50%;
         border: 1px solid #999;
     }
+}
+
+.InputAndButton{
+    width: 500px;
+    
+    //border-radius: 35px;
+}
+
+.Sendbutton{
+   
 }

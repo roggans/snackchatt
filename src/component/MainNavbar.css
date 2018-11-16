@@ -23,3 +23,7 @@ a:active {
 .activeClassName{
     background-color: coral;
 }
+
+.navbarstyle{
+    background:grey;
+}

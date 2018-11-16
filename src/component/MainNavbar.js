@@ -23,7 +23,7 @@ import {
 const MainNavbar = () => (
 
     <div>    
-        <Navbar color="light" light expand="md">
+        <Navbar className="navbarstyle" expand="md">
         <NavbarBrand to="/">
         {/* <img alt="React" className="logo" src={logo} /> */}
         Snackchatt
