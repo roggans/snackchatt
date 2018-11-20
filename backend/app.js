@@ -41,7 +41,20 @@ let UserSchema = mongoose.Schema({
   );
 
   // create a model from the schema
-var User = mongoose.model('User', UserSchema);
+let User = mongoose.model('User', UserSchema);
+
+
+// another schema  - message
+let MessageSchema =  mongoose.Schema({
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  room: String,
+  text: String,
+  dateTime: {type: Date, default: Date.now}
+});
+
+// create a model from the schema
+let Message = mongoose.model('Message', MessageSchema);
+
 
 //Skapa en user
 /*let Rogge = new User({username: 'Tomme', password: '1234', email: 'rogge@snabel.com',avatar:10})
@@ -63,20 +76,58 @@ app.post('/register', async (req, res) => {
   res.json({success: 'User created'});
 });
 
+app.post('/login', async (req, res) => {
+  console.log(req.body.username, req.body.password);
+  let matchingUsers = await User.find(req.body);
+  if(matchingUsers.length < 1){
+    res.json({error: 'Login failed'});
+  }
+  else {
+    let user = matchingUsers[0];
+    delete user.password;
+    res.json({success: 'Login ok', userObject: user});
+  }
+})
+
+ // When a new socket/client connects
+ io.on('connection', async function(socket){
+
+   // We get the socket connecting: socket
+   console.log('User connented');
+
+   // Newly connected socket so send all messages
+   let messages = await Message.find().populate('user').exec();
+   socket.emit('chat messages', messages);
+
+   // We add event listeners to the socket 
+   // that listens to messages from the socket/client
+   socket.on('chat message', async function(message){
+     // Create a Mongoose-model based object (since Message is a Mongoose model)
+     let dbMessage = new Message({
+       user: message.user._id,
+       text: message.text,
+       room: 'general'
+     });
+     // Store the message in the database
+     await dbMessage.save();
+     // We can choose to send a message to ALL connected socket
+     // using io.emit:
+
+     // Let's send a mix of the dbMessage and the original message
+     // since the original already has a complete user object
+     // and the dbMessage has the exact time
+     console.log("SENDBACK", {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
+     io.emit('chat message', {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
+   });
+
+ });
+//------------------------------Rogertest------------------------------------------//
 
 =======
 >>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
 
-io.on('connection', function(socket){
-  console.log('User connented');
-  // ta emot ett meddelande från en klient/socket
-  socket.on('chat message', function(message){
-    console.log('message: ', message);
-    // skicka alla meddelanden till alla klienter/socket
-    io.emit('chat message', message);
-  });
-});
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
+ 

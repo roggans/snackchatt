@@ -2,6 +2,8 @@ import React from 'react';
 //import logo from './trace.gif';
 import {NavLink} from 'react-router-dom';
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './MainNavbar.css';
+
 
 import {
      // Collapse,
@@ -21,7 +23,7 @@ import {
 const MainNavbar = () => (
 
     <div>    
-        <Navbar color="light" light expand="md">
+        <Navbar className="navbarstyle" expand="md">
         <NavbarBrand to="/">
         {/* <img alt="React" className="logo" src={logo} /> */}
         Snackchatt
@@ -31,19 +33,16 @@ const MainNavbar = () => (
         
         <Nav className="ml-auto" navbar>
             <NavItem>
-             <NavLink exact to="/" activeStyle={{background: 'tomato'}}>Startsida</NavLink> 
+             <NavLink className="navlinkstyle" exact to="/">Startsida</NavLink> 
             </NavItem>
             <NavItem>
-            <NavLink to="/about" activeStyle={{background: 'green'}}> About </NavLink>
+            <NavLink to="/about" className="navlinkstyle"> About </NavLink>
             </NavItem>
             <NavItem>
-            <NavLink to="/people" activeStyle={{background: 'green'}}> People </NavLink>
+            <NavLink to="/register" className="navlinkstyle"> Registrera användare </NavLink>                      
             </NavItem>
             <NavItem>
-            <NavLink to="/register" activeStyle={{background: 'green'}}> Registrera användare </NavLink>                      
-            </NavItem>
-            <NavItem>
-            <NavLink to="/chat" activeStyle={{background: 'green'}}> Till chatten </NavLink>                      
+            <NavLink to="/chat" className="navlinkstyle"> Till chatten </NavLink>                      
             </NavItem>
              
             
