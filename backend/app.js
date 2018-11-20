@@ -38,7 +38,20 @@ let UserSchema = mongoose.Schema({
   );
 
   // create a model from the schema
-var User = mongoose.model('User', UserSchema);
+let User = mongoose.model('User', UserSchema);
+
+
+// another schema  - message
+let MessageSchema =  mongoose.Schema({
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  room: String,
+  text: String,
+  dateTime: {type: Date, default: Date.now}
+});
+
+// create a model from the schema
+let Message = mongoose.model('Message', MessageSchema);
+
 
 //Skapa en user
 /*let Rogge = new User({username: 'Tomme', password: '1234', email: 'rogge@snabel.com',avatar:10})
@@ -81,7 +94,15 @@ app.post('/login', async (req, res) => {
 
    // We add event listeners to the socket 
    // that listens to messages from the socket/client
-   socket.on('chat message', function(message){
+   socket.on('chat message', async function(message){
+     // Create a Mongoose-model based object (since Message is a Mongoose model)
+     let dbMessage = new Message({
+       user: message.user._id,
+       text: message.message,
+       room: 'general'
+     });
+     // Store the message in the database
+     await dbMessage.save();
      // We can choose to send a message to ALL connected socket
      // using io.emit:
      io.emit('chat message', message);
@@ -96,3 +117,10 @@ http.listen(port, function(){
   console.log('listening on *:' + port);
 });
  
+
+async function getAllMessages(){
+  let messages = await Message.find().populate('user').exec();
+  console.log(messages);
+}
+
+getAllMessages();

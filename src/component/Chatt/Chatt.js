@@ -34,6 +34,8 @@ class Chatt extends Component {
     };
 
 
+
+
     // skapa en ny socket
     //this.socket = openSocket('', {path: '/api/socket'});
     this.socket = openSocket.connect('http://localhost:3010');
@@ -61,8 +63,7 @@ class Chatt extends Component {
     // skicka meddelande till servern
     this.socket.emit('chat message', {
       user: JSON.parse(window.localStorage.loggedInUser),
-      message: this.state.message,
-
+      message: this.state.message
     });
 
     // nollställ inmatningsfältet
@@ -71,21 +72,27 @@ class Chatt extends Component {
   }
 
 
-
-
   changeMessage(e) {        ////Check if input is a "fult ord"
-    if (e.currentTarget.value.toLowerCase() === "jävla") {
+    //   //if (e.currentTarget.value.toLowerCase() === "jävla") {
+    //     if (e.currentTarget.value.toLowerCase() === 'katt') {
 
-      alert('Inga fula ord i chatten!')
-      this.setState({ message: '' })
+    //     alert('Inga fula ord i chatten!')
+    //     this.setState({ message: '' })
+
+    //   } else
+    //     this.setState({ message: e.currentTarget.value })
+    // }
+    let str = e.currentTarget.value.toLowerCase();
+
+    let uglyWords = ["jävla", "fanskap", "satan"];
+
+    for (let word of uglyWords) { str = str.split(word).join('***'); }
 
 
-    } else
-      this.setState({ message: e.currentTarget.value })
-
-
-
+    this.setState({ message: str })
   }
+
+
 
   insertEmoji = (emojiCode) => {
     /*this.setState({
@@ -98,20 +105,6 @@ class Chatt extends Component {
     this.setState({ message: this.state.message + emoji });
   }
 
-   // Show an element
- show = function (elem) {
-	elem.classList.add('is-visible');
-};
-
-// Hide an element
- hide = function (elem) {
-	elem.classList.remove('is-visible');
-};
-
-// Toggle element visibility
- toggle = function (elem) {
-	elem.classList.toggle('is-visible');
-};
 
   //läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
   user = JSON.parse(window.localStorage.loggedInUser);
@@ -120,7 +113,7 @@ class Chatt extends Component {
 
     return (
       <div className="Chatt-container">
-<Topinfobar />
+        <Topinfobar />
         <Container fluid>
           <Row>
             <Col xs="3" className="activeUsers">
@@ -131,46 +124,43 @@ class Chatt extends Component {
               <ActiveUserList />
             </Col>
 
-            
+
 
             <Col xs="6" className="">
               {/* <h3 className="activeuserlist">Gemensam Chatt</h3>    ska ändra namn till den chatt du är i */}
               <div className="messages">
-                 {this.state.messages.map((message, i) => <div key={i} className="display-message"> 
-                    <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
-                    <p className="mb-1"><b>{message.user.username}</b></p>
-                    <p className="mb-2">{message.message}</p>
-                    <hr></hr>
-                  </div>)}
+                {this.state.messages.map((message, i) => <div key={i} className="display-message">
+                  <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
+                  <p className="mb-1"><b>{message.user.username}</b></p>
+                  <p className="mb-2">{message.message}</p>
+                  <hr></hr>
+                </div>)}
               </div>
-              
-              
+
+
             </Col>
             <Col xs="3">
               {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
-              <Activechatrooms roomname="Gemensam chat"/>
-              <Activechatrooms roomname="Kalle Ankas rum"/>
-              <Activechatrooms roomname="Jan banans rum"/>
+              <Activechatrooms roomname="Gemensam chat" />
+              <Activechatrooms roomname="Kalle Ankas rum" />
+              <Activechatrooms roomname="Jan banans rum" />
             </Col>
-            </Row>
-            <Row>
-              <Col xs="12">
+          </Row>
+          <Row>
+            <Col xs="12">
 
-               
-                
-                <div className="text-center mt-4">
+              <div className="text-center mt-4">
                 <input className="InputAndButton" id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
                 <button className="Sendbutton" onClick={e => this.send()}>Skicka</button>
-                
-                <button>😀</button>
-                </div>
-                <div className="is-visible"><EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)}/> */}
-               </div> 
-              </Col>
-            </Row>
-            
 
-          
+                <button onClick={this.showEmojis}>😀</button>
+              </div>
+
+            </Col>
+          </Row>
+
+
+
         </Container>
       </div>
     );
