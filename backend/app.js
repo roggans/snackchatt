@@ -87,10 +87,14 @@ app.post('/login', async (req, res) => {
 })
 
  // When a new socket/client connects
- io.on('connection', function(socket){
+ io.on('connection', async function(socket){
 
    // We get the socket connecting: socket
    console.log('User connented');
+
+   // Newly connected socket so send all messages
+   let messages = await Message.find().populate('user').exec();
+   socket.emit('chat messages', messages);
 
    // We add event listeners to the socket 
    // that listens to messages from the socket/client
@@ -98,14 +102,19 @@ app.post('/login', async (req, res) => {
      // Create a Mongoose-model based object (since Message is a Mongoose model)
      let dbMessage = new Message({
        user: message.user._id,
-       text: message.message,
+       text: message.text,
        room: 'general'
      });
      // Store the message in the database
      await dbMessage.save();
      // We can choose to send a message to ALL connected socket
      // using io.emit:
-     io.emit('chat message', message);
+
+     // Let's send a mix of the dbMessage and the original message
+     // since the original already has a complete user object
+     // and the dbMessage has the exact time
+     console.log("SENDBACK", {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
+     io.emit('chat message', {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
    });
 
  });
@@ -117,10 +126,3 @@ http.listen(port, function(){
   console.log('listening on *:' + port);
 });
  
-
-async function getAllMessages(){
-  let messages = await Message.find().populate('user').exec();
-  console.log(messages);
-}
-
-getAllMessages();
