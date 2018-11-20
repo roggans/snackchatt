@@ -3,15 +3,11 @@ import { Container, Row, Col, ListGroup, ListGroupItem, Badge } from 'reactstrap
 import { ChatItem, MessageBox, SystemMessage, SideBar, Avatar, MessageList, Button, ChatList } from 'react-chat-elements';
 import 'react-chat-elements/dist/main.css';
 import openSocket from 'socket.io-client';
-<<<<<<< HEAD
 import EmojiPicker from 'emoji-picker-react';
 import 'emoji-picker-react/dist/universal/style.scss';
 import JSEMOJI from 'emoji-js';
 import People from '../People/People';
 //import sand from './sand.jpg'
-=======
-import sand from './sand.jpg'
->>>>>>> parent of c7d3ef4... Merge branch 'feature/mongosetup' into develop
 import './Chatt.scss';
 import InputWordCheck from '../InputWordCheck/InputWordCheck';
 import ActiveUserList from '../ActiveUserList/ActiveUserList';

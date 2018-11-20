@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import { Link } from "react-router-dom";
+
 import {
   // Collapse,
   //Navbar,
@@ -10,8 +12,12 @@ import {
    Container,
    Row,
    Col,
-  // Jumbotron,
-   Button
+  Jumbotron,
+   Button,
+   Form,
+   FormGroup,
+   Label,
+   Input
 } from 'reactstrap';
 import './Home.css';
 import axios from 'axios';
@@ -79,11 +85,8 @@ class Home extends Component {
   render() {
     return (
       <div className="main-content home">
-      <Container>
-        {/* <Row>
-          <Col>
-            <h2>Snackchatt</h2></Col>
-            </Row> */}
+      <div className='Login-component'></div>
+      <Container className='Login-component'>
             <Row>
               <Col>
               <Jumbotron className="bg-light text-dark" style ={style}>
@@ -110,20 +113,6 @@ class Home extends Component {
               </Jumbotron>
               </Col>
             </Row>
-            <Col-6>
-             <Button onClick={this.Loginform} color="primary" size="lg" block>Logga in</Button> {/*onclick dont work */}
-            </Col-6>
-          
-          <p>Klicka här för att logga in</p>
-          <hr />
-          <Col-6>
-            <Button color="primary" size="lg" block>Registrera dig</Button>
-            </Col-6>
-          
-          <p>Klicka här för att registrera dig</p>
-          <hr />
-          
-        
       </Container>
         
         
