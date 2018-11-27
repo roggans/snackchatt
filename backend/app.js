@@ -90,6 +90,7 @@ app.post('/login', async (req, res) => {
 
  // When a new socket/client connects
  io.on('connection', async function(socket){
+   
 
    // We get the socket connecting: socket
    console.log('User connented');
@@ -107,6 +108,13 @@ app.post('/login', async (req, res) => {
        text: message.text,
        room: 'general'
      });
+
+     socket.on('join_room',function(msg){
+      //In this msg information regarding room is present which has been sent by client
+      socket.join(msg.room); //msg.room = room1
+      //sending message to all the sockets present in room1
+      io.to("room1").emit("msg_for_room1","mesage for room1");
+    });
      // Store the message in the database
      await dbMessage.save();
      // We can choose to send a message to ALL connected socket
@@ -118,7 +126,7 @@ app.post('/login', async (req, res) => {
      console.log("SENDBACK", {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
      io.emit('chat message', {...message, dateTime: dbMessage.dateTime, room: dbMessage.room});
    });
-
+   
  });
 //------------------------------Rogertest------------------------------------------//
 
@@ -128,3 +136,20 @@ http.listen(port, function(){
   console.log('listening on *:' + port);
 });
  
+app.get('/active-users', async (req, res) => {
+  let maxTimeInactviveInMinutes = 20;
+  let dateToCompareWith = new Date(Date.now() - maxTimeInactviveInMinutes * 60 * 1000);
+  let foundMessages = await Message.find({dateTime : {$gt: dateToCompareWith}}).populate('user').exec();
+  // sort newest messages first
+  foundMessages.sort((a, b) => {
+    return a.dateTime > b.dateTime ? -1 : 1;
+  });
+  // extract users
+  let users = {};
+  for(let message of foundMessages){
+    users[message.user.username] = {username: message.user.username, avatar: message.user.avatar};
+  }
+  users = Object.values(users);
+  // send users
+  res.json(users);
+});

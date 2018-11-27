@@ -5,7 +5,7 @@ export default class Activechatrooms extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-         blablalbalb: '',
+         currentroom: '',
         }
       }
       render() {
