@@ -4,7 +4,7 @@ import 'react-chat-elements/dist/main.css';
 import openSocket from 'socket.io-client';
 //import EmojiPicker from 'emoji-picker-react';
 import 'emoji-picker-react/dist/universal/style.scss';
-import JoinRoom from '../JoinRoom/JoinRoom';
+import AcceptInvite from '../AcceptInvite/AcceptInvite';
 import JSEMOJI from 'emoji-js';
 import People from '../People/People';
 //import sand from './sand.jpg'
@@ -164,9 +164,9 @@ this.socket.on('msg_for_room1', function (msg) {
             </Col>
             <Col xs="3">
               {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
-              <Activechatrooms roomname="Gemensam chat" />
-              <Activechatrooms roomname="Kalle Ankas rum" />
-              <Activechatrooms roomname="Jan banans rum" />
+              {JSON.parse(window.localStorage.loggedInUser).chatRooms.map(chatRoom =>
+                <Activechatrooms roomname={chatRoom} />
+              )}
             </Col>
           </Row>
           <Row>
@@ -178,7 +178,7 @@ this.socket.on('msg_for_room1', function (msg) {
                 <button className="Sendbutton" onClick={e => this.send()}>Skicka</button></span>
 
                 {/* <button onClick={this.showEmojis}>😀</button> */}
-                
+                <AcceptInvite />
               </div>
 
             </Col>

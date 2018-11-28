@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Invitepng from './invite.png';
-import './JoinRoom.scss';
 
-class JoinRoom extends React.Component {
+
+
+class AcceptInvite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,15 +24,15 @@ class JoinRoom extends React.Component {
     return (
       <div>
       
-        <Button className="acceptRoomInvitebtn" onClick={this.toggle}>{this.props.buttonLabel}<img src={Invitepng} alt="adduser icon"></img></Button>
+        <Button className="acceptRoomInvitebtn" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Bjuda in "Denna användaren" i ditt rum?</ModalHeader>
+          <ModalHeader toggle={this.toggle}>"(Roger)" vill bjuda in dig i sitt rum.</ModalHeader>
           <ModalBody>
-           Bjud in "Denna användaren" för att chatta privat i ditt eget rum. Endast du och dom som är i ditt rum kommer att se meddelandena som skrivs där.
+          ("Roger") Vill bjuda in dig att chatta privat i ditt eget rum. Endast du och dom som är i ditt rum kommer att se meddelandena som skrivs där.
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Ja gärna</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Nej, jag ångrade mig</Button>
+            <Button color="secondary" onClick={this.toggle}>Nej, jag vill inte!</Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -40,4 +40,4 @@ class JoinRoom extends React.Component {
   }
 }
 
-export default JoinRoom;
+export default AcceptInvite;

@@ -71,6 +71,7 @@ app.post('/register', async (req, res) => {
   // we expect req.body (sent from frontend) to be an object
   // following the User schema (chatRooms doesn't have to be filled in)
   let user = new User(req.body);
+  user.chatRooms = ['Gemensam chatt', user.username + (user.username.substr(-1)==='s' ? '' :'s') + ' rum'];
   await user.save();
   res.json({success: 'User created'});
 });
