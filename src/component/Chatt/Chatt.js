@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import { ChatItem, MessageBox, SystemMessage, SideBar, Avatar, MessageList, Button, ChatList } from 'react-chat-elements';
+import { Container, Row, Col } from 'reactstrap';
 import 'react-chat-elements/dist/main.css';
 import openSocket from 'socket.io-client';
-import EmojiPicker from 'emoji-picker-react';
+//import EmojiPicker from 'emoji-picker-react';
 import 'emoji-picker-react/dist/universal/style.scss';
+import AcceptInvite from '../AcceptInvite/AcceptInvite';
 import JSEMOJI from 'emoji-js';
 import People from '../People/People';
 //import sand from './sand.jpg'
 import './Chatt.scss';
-import InputWordCheck from '../InputWordCheck/InputWordCheck';
+
 import ActiveUserList from '../ActiveUserList/ActiveUserList';
 import Activechatrooms from '../Activechatrooms/Activechatrooms';
 import Topinfobar from '../Topinfobar/Topinfobar';
@@ -33,7 +33,7 @@ class Chatt extends Component {
       emojiShown: false
     };
 
-
+    
 
 
     // skapa en ny socket
@@ -54,6 +54,7 @@ class Chatt extends Component {
         // add all messages to this.state.message
         this.setState({ messages: [...this.state.messages, ...messages] });
       }
+      
     )
 
     // få socket att lyssna på när servern/backend skickar 'chat message'
@@ -63,8 +64,13 @@ class Chatt extends Component {
         let dateObj = new Date(message.dateTime);
         message.dateTime = dateObj.toLocaleString();
         console.log("TOG EMOT", message)
+        this.socket.emit('join_room',{room: 'room1'});
         // vi tar emot meddelande från servern
         // och lägg till det nya meddelandet i state.messages
+        //event for sockets connected with room1
+this.socket.on('msg_for_room1', function (msg) {
+  console.log(msg);
+});
 
         this.setState({ messages: [...this.state.messages, message] });
         // Scroll to bottom
@@ -78,6 +84,8 @@ class Chatt extends Component {
     );
   }
 
+  
+
   send() {
     // skicka meddelande till servern
     this.socket.emit('chat message', {
@@ -87,9 +95,7 @@ class Chatt extends Component {
 
     // nollställ inmatningsfältet
     this.setState({ message: '' });
-
   }
-
 
   changeMessage(e) {        ////Check if input is a "fult ord"
     //   //if (e.currentTarget.value.toLowerCase() === "jävla") {
@@ -138,9 +144,6 @@ class Chatt extends Component {
             <Col xs="3" className="activeUsers">
               {/* <h3 className="activeuserlist">Aktiva användare</h3> */}
               <ActiveUserList />
-              <ActiveUserList />
-              <ActiveUserList />
-              <ActiveUserList />
             </Col>
 
 
@@ -161,20 +164,21 @@ class Chatt extends Component {
             </Col>
             <Col xs="3">
               {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
-              <Activechatrooms roomname="Gemensam chat" />
-              <Activechatrooms roomname="Kalle Ankas rum" />
-              <Activechatrooms roomname="Jan banans rum" />
+              {JSON.parse(window.localStorage.loggedInUser).chatRooms.map(chatRoom =>
+                <Activechatrooms roomname={chatRoom} />
+              )}
             </Col>
           </Row>
           <Row>
             <Col xs="12">
 
               <div className="text-center mt-1">
-              <span class="input">
+              <span className="input">
                 <input className="InputAndButton" id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
                 <button className="Sendbutton" onClick={e => this.send()}>Skicka</button></span>
 
-                <button onClick={this.showEmojis}>😀</button>
+                {/* <button onClick={this.showEmojis}>😀</button> */}
+                <AcceptInvite />
               </div>
 
             </Col>

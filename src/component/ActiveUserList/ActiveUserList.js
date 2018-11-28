@@ -1,25 +1,36 @@
 import React from 'react';
 import People from '../People/People';
+import JoinRoom from '../JoinRoom/JoinRoom';
 import './ActiveUserList.scss';
+import axios from 'axios';
 
 export default class ActiveUserList extends React.Component {
     constructor(props){
-        super(props);
-        this.state = {
-          LoginUsername: '',
-        }
-      }
+        super(props); 
+        // Call getActiveUsers every 10:th second
+        this.getActiveUsers();
+        this.state = {activeUsers: []};
+        setInterval(() => this.getActiveUsers(), 1000);
+    }
 
-      //Jag läser in inloggad användare lokalt och visar nedan i this.user.username, tanken är att den ska läsa in från db inloggade användare!!!!
-//läs in vem som är inloggad och användes i aktiva användare i render() med this.user.username
-user = JSON.parse(window.localStorage.loggedInUser);
+    async getActiveUsers(){
+       let activeUsers = (await axios.get('/api/active-users')).data;
+       this.setState({activeUsers: activeUsers});
+    }
+
+//user = JSON.parse(window.localStorage.loggedInUser);
 
     render() {
         return (
-            <div className="display-activeusers">
-                <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" />
-                <span className="centerthing">{this.user.username}</span>
-
+            <div className="all-active">
+                {this.state.activeUsers.map(user => 
+                    <div className="display-activeusers">
+                       <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={user.avatar} />
+                       <span className="centerthing">{user.username}</span>
+                       <span className="centerthing"><JoinRoom /></span>
+                       
+                    </div>
+                )} 
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, ListGroup, ListGroupItem, Badge } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import './Topinfobar.scss';
 
 export default class Topinfobar extends React.Component {
