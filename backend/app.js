@@ -107,7 +107,7 @@ app.post('/login', async (req, res) => {
      let dbMessage = new Message({
        user: message.user._id,
        text: message.text,
-       room: 'general'
+       room: message.room
      });
 
      socket.on('join_room',function(msg){

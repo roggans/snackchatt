@@ -19,7 +19,7 @@ export default class Topinfobar extends React.Component {
                             <h3 className="topinfobar">Aktiva användare</h3>
                         </Col>
                         <Col>
-                            <h3 className="topinfobar">Gemensam chatt</h3>
+                            <h3 className="topinfobar">{this.props.room}</h3>
                         </Col> 
                         <Col xs="3">
                             <h3 className="topinfobar">Mina Chatt-rum</h3>

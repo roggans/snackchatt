@@ -30,11 +30,9 @@ class Chatt extends Component {
     this.state = {
       message: '',
       messages: [],
-      emojiShown: false
+      emojiShown: false,
+      room: "Gemensam chatt"
     };
-
-    
-
 
     // skapa en ny socket
     //this.socket = openSocket('', {path: '/api/socket'});
@@ -68,8 +66,8 @@ class Chatt extends Component {
         // vi tar emot meddelande från servern
         // och lägg till det nya meddelandet i state.messages
         //event for sockets connected with room1
-this.socket.on('msg_for_room1', function (msg) {
-  console.log(msg);
+      this.socket.on('msg_for_room1', function (msg) {
+        console.log(msg);
 });
 
         this.setState({ messages: [...this.state.messages, message] });
@@ -90,7 +88,8 @@ this.socket.on('msg_for_room1', function (msg) {
     // skicka meddelande till servern
     this.socket.emit('chat message', {
       user: JSON.parse(window.localStorage.loggedInUser),
-      text: this.state.message
+      text: this.state.message,
+      room: this.state.room
     });
 
     // nollställ inmatningsfältet
@@ -117,6 +116,11 @@ this.socket.on('msg_for_room1', function (msg) {
     this.setState({ message: str })
   }
 
+  changeRoomHandler = (roomname) => {
+    console.log('val av rum klickad på!!!', roomname);
+    this.setState({ 'room': roomname});
+  }
+
 
 
   insertEmoji = (emojiCode) => {
@@ -136,9 +140,14 @@ this.socket.on('msg_for_room1', function (msg) {
 
   render() {
 
+    //* filter för att endast visa meddelande som ska ses i rätt rum 
+//     let rooms = this.messages.filter(function(room){
+//     return this.state.room === this.loggedInUser.room;
+// });
+
     return (
       <div className="Chatt-container">
-        <Topinfobar />
+        <Topinfobar room={this.state.room} />
         <Container fluid>
           <Row>
             <Col xs="3" className="activeUsers">
@@ -146,12 +155,10 @@ this.socket.on('msg_for_room1', function (msg) {
               <ActiveUserList />
             </Col>
 
-
-
             <Col xs="6" className="">
               {/* <h3 className="activeuserlist">Gemensam Chatt</h3>    ska ändra namn till den chatt du är i */}
               <div className="messages">
-                {this.state.messages.map((message, i) => <div key={i} className="display-message">
+                {this.state.messages.filter(m=>m.room === this.state.room).map((message, i) => <div key={i} className="display-message">
                   <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
                   <p className="mb-1"><b>{message.user.username} {message.dateTime}</b></p>
                   <p className="mb-2">{message.text}</p>
@@ -162,10 +169,12 @@ this.socket.on('msg_for_room1', function (msg) {
 
 
             </Col>
-            <Col xs="3">
+            <Col xs="3" >
+            {/* <Activechatrooms roomname={chatRoom}  /> */}
               {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
               {JSON.parse(window.localStorage.loggedInUser).chatRooms.map(chatRoom =>
-                <Activechatrooms roomname={chatRoom} />
+                
+                <Activechatrooms roomname={chatRoom} onClick={this.changeRoomHandler}/>
               )}
             </Col>
           </Row>
@@ -180,12 +189,8 @@ this.socket.on('msg_for_room1', function (msg) {
                 {/* <button onClick={this.showEmojis}>😀</button> */}
                 <AcceptInvite />
               </div>
-
             </Col>
           </Row>
-
-
-
         </Container>
       </div>
     );

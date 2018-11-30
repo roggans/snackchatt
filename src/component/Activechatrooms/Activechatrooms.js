@@ -2,18 +2,12 @@ import React from 'react';
 import './Activechatrooms.scss';
 
 export default class Activechatrooms extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-         currentroom: '',
-        }
-      }
       render() {
         return (
-            <div className="display-activerooms">
+            <div className="display-activerooms" onClick={() => { this.props.onClick(this.props.roomname); }}>
                 {this.props.roomname}
 
             </div>
         );
     }
-    }
+}
