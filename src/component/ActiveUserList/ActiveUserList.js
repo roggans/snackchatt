@@ -27,7 +27,7 @@ export default class ActiveUserList extends React.Component {
                     <div className="display-activeusers">
                        <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={user.avatar} />
                        <span className="centerthing">{user.username}</span>
-                       <span className="centerthing"><JoinRoom /></span>
+                       
                        
                     </div>
                 )} 

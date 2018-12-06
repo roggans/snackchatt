@@ -13,6 +13,7 @@ import './Chatt.scss';
 import ActiveUserList from '../ActiveUserList/ActiveUserList';
 import Activechatrooms from '../Activechatrooms/Activechatrooms';
 import Topinfobar from '../Topinfobar/Topinfobar';
+import JoinRoom from '../JoinRoom/JoinRoom';
 
 //emoji set up
 let jsemoji = new JSEMOJI();
@@ -121,6 +122,10 @@ class Chatt extends Component {
     this.setState({ 'room': roomname});
   }
 
+  userclickedHandler = (mee) => {
+    console.log('du klickade på ', mee);
+  }
+
 
 
   insertEmoji = (emojiCode) => {
@@ -152,7 +157,7 @@ class Chatt extends Component {
           <Row>
             <Col xs="3" className="activeUsers">
               {/* <h3 className="activeuserlist">Aktiva användare</h3> */}
-              <ActiveUserList />
+              <ActiveUserList onClick={this.userclickedHandler}/>
             </Col>
 
             <Col xs="6" className="">
