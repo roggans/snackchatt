@@ -134,7 +134,7 @@ class RegisterUser extends Component {
                             <Form>
                                 <FormGroup>
                                     <Label for="username">Användarnamn</Label>
-                                    <Input valid={this.state.usernameValid} invalid={!this.state.usernameValid && (this.state.username || this.state.triedToSubmit)} 
+                                    <Input autoComplete="off" valid={this.state.usernameValid} invalid={!this.state.usernameValid && (this.state.username || this.state.triedToSubmit)} 
                                     type="text" id="username" placeholder="Karl pedal" value={this.state.username} onChange={e => this.changeUsername(e)} />
                                     <FormFeedback valid>Ditt namn är ledigt!</FormFeedback>
                                     <FormFeedback invalid>Aj, välj ett annan namn</FormFeedback>

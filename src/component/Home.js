@@ -81,44 +81,55 @@ class Home extends Component {
 
     }
   }
- 
+
   render() {
     return (
-      <div className="main-content home">
-      <div className='Login-component'></div>
-      <Container className='Login-component'>
-            <Row>
-              <Col>
-              <Jumbotron className="bg-light text-dark" style ={style}>
-        <h1 className="display-3">Chatta med dina vänner</h1>
-        <p className="lead">Detta är en chatt med inriktning till yngre. 6-12 år. Vänligen håll språket vårdat.</p>
-        <hr className="my-2" />
-        <p>Har du inget konto? Inga problem. Registrera dig genom att klicka på knappen nedan. Det tar endast 2 minuter. Vi ses i chatten!</p>
-        <p className="lead">
-          <Button  tag={Link} to="/register" color="primary">Registrera konto</Button>
-        </p>
-        
-      
-      <Form inline>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="userId" className="mr-sm-2">Användarnamn</Label>
-          <Input type="text" id="userId" placeholder="Vad heter du?" value={this.state.LoginUsername} onChange={e => this.usernameCheck(e)} />
-        </FormGroup>
-        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="LoginPassword" className="mr-sm-2">Lösenord</Label> 
-          <Input type="password" id="userPassword" placeholder="Lösenord" value={this.state.userPassword} onChange={e => this.userPasswordCheck(e)} />
-        </FormGroup>
-        <Button onClick={()=>this.handleUserApproved()}>Skicka</Button>
-      </Form>
-              </Jumbotron>
-              </Col>
-            </Row>
-      </Container>
-        
-        
+      <div className="background">
+      <div className="main-content">
+        {/* <div className='Login-component'></div> */}
+        <Container className='Login-component'>
+          <Row>
+            <Col xs="4">
+              <h1 className="mt-4 justering display-3">Chatta med dina vänner</h1>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs="6" className="homeInloggFields justering">
+              <Form inline>
+                <FormGroup className="">
+                  <Label for="userId" className="">Namn</Label>
+                  <Input type="text" id="userId" placeholder="Vad heter du?" value={this.state.LoginUsername} onChange={e => this.usernameCheck(e)} />
+                </FormGroup></Form>
+            </Col>
+            <Col xs=""  className="homeInloggFields justering">
+            <Button className="register-btn" tag={Link} to="/register">Registrera konto</Button>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs="4" className="homeInloggFields justering">
+            <Form inline>
+              <FormGroup className="">
+                <Label for="LoginPassword" className="">Lösen</Label>
+                <Input type="password" id="userPassword" placeholder="Lösenord" value={this.state.userPassword} onChange={e => this.userPasswordCheck(e)} />
+              
+              <Button onClick={() => this.handleUserApproved()}>Skicka</Button>
+              </FormGroup></Form>
+            </Col>
+          </Row>
+        </Container>
+      </div>
       </div>
     );
   }
 }
 
 export default withRouter(Home);
+
+{/* <p className="lead">Detta är en chatt med inriktning till yngre. 6-12 år. Vänligen håll språket vårdat.</p>
+<hr className="my-2" />
+<p>Har du inget konto? Inga problem. Registrera dig genom att klicka på knappen nedan. Det tar endast 2 minuter. Vi ses i chatten!</p>
+<p className="lead">
+  <Button  tag={Link} to="/register" color="primary">Registrera konto</Button>
+</p> */}

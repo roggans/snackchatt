@@ -40,7 +40,7 @@ class Chatt extends Component {
     this.socket = openSocket.connect('http://localhost:3010');
 
 
-    // få scoket att lyssa ner servern skicar 'chat messages' (obs flera meddelanden på en gång!)
+    // få socket att lyssa när servern skickar 'chat messages' (obs flera meddelanden på en gång!)
     this.socket.on(
       'chat messages',
       (messages) => {
@@ -49,7 +49,7 @@ class Chatt extends Component {
           let dateObj = new Date(message.dateTime);
           message.dateTime = dateObj.toLocaleString();
         }
-        console.log("MEDDEELANDEN FRÅN SERVERN",messages)
+        console.log("MEDDELANDEN FRÅN SERVERN",messages)
         // add all messages to this.state.message
         this.setState({ messages: [...this.state.messages, ...messages] });
       }
@@ -63,13 +63,25 @@ class Chatt extends Component {
         let dateObj = new Date(message.dateTime);
         message.dateTime = dateObj.toLocaleString();
         console.log("TOG EMOT", message)
-        this.socket.emit('join_room',{room: 'room1'});
+        
         // vi tar emot meddelande från servern
         // och lägg till det nya meddelandet i state.messages
         //event for sockets connected with room1
       this.socket.on('msg_for_room1', function (msg) {
         console.log(msg);
 });
+
+        ////////////////////ROGER/////////////
+       
+
+      this.socket.on('rogertest', (rogertest) => {
+        console.log(rogertest);
+      } )
+      this.socket.on('message from server', (msg) => {
+        console.log(msg);
+    })
+////////////////ROGER//////////////////////
+
 
         this.setState({ messages: [...this.state.messages, message] });
         // Scroll to bottom
@@ -82,8 +94,6 @@ class Chatt extends Component {
       }
     );
   }
-
-  
 
   send() {
     // skicka meddelande till servern
@@ -98,22 +108,11 @@ class Chatt extends Component {
   }
 
   changeMessage(e) {        ////Check if input is a "fult ord"
-    //   //if (e.currentTarget.value.toLowerCase() === "jävla") {
-    //     if (e.currentTarget.value.toLowerCase() === 'katt') {
-
-    //     alert('Inga fula ord i chatten!')
-    //     this.setState({ message: '' })
-
-    //   } else
-    //     this.setState({ message: e.currentTarget.value })
-    // }
     let str = e.currentTarget.value.toLowerCase();
 
     let uglyWords = ["jävla", "fanskap", "satan"];
 
     for (let word of uglyWords) { str = str.split(word).join('***'); }
-
-
     this.setState({ message: str })
   }
 

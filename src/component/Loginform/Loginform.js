@@ -62,7 +62,7 @@ class Loginform extends React.Component {
                     />
                   </FormGroup>
                 </Col>
-                <Button>Skicka</Button>
+                <Button>Sicka</Button>
               </Form>
             </Container>
           </ModalBody>
