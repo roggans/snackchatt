@@ -2,7 +2,7 @@
     background: url(../bg1.jpg) no-repeat;
 
     
-    height:100vh;
+    // height:100vh;
   background-size: cover;
 }
 
@@ -14,8 +14,8 @@
    // padding-left:10px;
     border:1px solid black;
     border-radius: 35px 0 0 35px;
-    max-height: 80vh;
-    min-height: 70vh;
+    max-height: 70vh;
+    min-height: 60vh;
     overflow-y: scroll;
     
     
@@ -61,7 +61,7 @@ border: 1px solid #000000;
 }
 
 .InputAndButton{
-    width: 500px;
+    width: 300px;
     
     //border-radius: 35px;
 }
@@ -115,7 +115,7 @@ input {
 	font-family: inherit;
 	line-height:inherit;
 	color:#2e3750;
-	min-width:12em;
+	// min-width:12em;
 }
 
 ::placeholder {
@@ -124,4 +124,13 @@ input {
 
 .Sendbutton{
     background:whitesmoke;
+}
+.pointer{
+	cursor: pointer;
+}
+
+.roger{
+	 position: absolute;
+    display: block;
+    z-index: 1;
 }

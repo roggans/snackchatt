@@ -17,7 +17,7 @@ import {
     BrowserRouter,
     Route,
     Switch
-} from 'react-router-dom'; 
+} from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 import Home from './Home';
 import About from './About';
@@ -29,22 +29,22 @@ import RegisterUser from './RegisterUser/RegisterUser';
 
 const App = () => (
     <div>
-    <BrowserRouter>
-       
-        <div>
-            <MainNavbar /> 
-             <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/about" render={ () => <About title='Hej på dig' /> } />
-            <Route path="/register" component={RegisterUser} />
-            <Route path="/people" component={People} />
-            <Route path="/chat" component={Chatt} />
-            <Route component={NotFound} />
-            </Switch>
-        </div>
-        
-    </BrowserRouter>
-    {/* <LoginForm /> */}
+        <BrowserRouter>
+
+            <div>
+                <MainNavbar />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/about" render={() => <About title='Hej på dig' />} />
+                    <Route path="/register" component={RegisterUser} />
+                    <Route path="/people" component={People} />
+                    <Route path="/chat" component={Chatt} />
+                    <Route component={NotFound} />
+                </Switch>
+            </div>
+
+        </BrowserRouter>
+        {/* <LoginForm /> */}
     </div>
 )
 

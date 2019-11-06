@@ -72,18 +72,6 @@ class Chatt extends Component {
           console.log(msg);
         });
 
-        ////////////////////ROGER/////////////
-
-
-        this.socket.on('rogertest', (rogertest) => {
-          console.log(rogertest);
-        })
-        this.socket.on('message from server', (msg) => {
-          console.log(msg);
-        })
-        ////////////////ROGER//////////////////////
-
-
         this.setState({ messages: [...this.state.messages, message] });
         // Scroll to bottom
         setTimeout(function () {
@@ -154,14 +142,32 @@ class Chatt extends Component {
       <div className="Chatt-container">
         <Topinfobar room={this.state.room} />
         <Container fluid>
-          <Row>
-            <Col xs="3" className="activeUsers">
-              {/* <h3 className="activeuserlist">Aktiva användare</h3> */}
-              <ActiveUserList onClick={this.userclickedHandler} />
-            </Col>
+          <Row className="pointer">
 
-            <Col xs="6" className="">
-              {/* <h3 className="activeuserlist">Gemensam Chatt</h3>    ska ändra namn till den chatt du är i */}
+            {JSON.parse(window.localStorage.loggedInUser).chatRooms.map(chatRoom =>
+
+              <Activechatrooms roomname={chatRoom} onClick={this.changeRoomHandler} />
+
+            )}
+
+          </Row>
+
+
+          {/* <ActiveUserList onClick={this.userclickedHandler} /> */}
+
+
+
+          {/* d-none d-xs-none d-md-block d-lg-block */}
+
+          {/* <Activechatrooms roomname={chatRoom}  /> */}
+          {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
+
+
+
+
+          <Row>
+            <Col xs="12" md="6" lg="6" className="mb-3">
+
               <div className="messages">
                 {this.state.messages.filter(m => m.room === this.state.room).map((message, i) => <div key={i} className="display-message">
                   <People className="float-left avatar-head-in-chat mr-3" head={true} scale="1" avatar={message.user.avatar} />
@@ -174,37 +180,48 @@ class Chatt extends Component {
 
 
             </Col>
-            <Col xs="3" >
-              {/* <Activechatrooms roomname={chatRoom}  /> */}
-              {/* <h3 className="activeuserlist">Mina chatt-rum</h3> */}
-              {JSON.parse(window.localStorage.loggedInUser).chatRooms.map(chatRoom =>
 
-                <Activechatrooms roomname={chatRoom} onClick={this.changeRoomHandler} />
-              )}
 
-              {<div>
-                <Toggle>
-                  <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)} />
-                </Toggle>
-              </div>}
+            <div className="ml-3">
+              <Toggle>
+                <EmojiPicker onEmojiClick={(x) => this.insertEmoji(x)} />
+              </Toggle>
+            </div>
+
+            <Col xs="6" md="3" lg="3" className="d-none d-xs-block d-md-block d-lg-block">
+              <h6>Aktiva användare</h6>
+              <ActiveUserList onClick={this.userclickedHandler} />
             </Col>
-          </Row>
-          <Row>
-            <Col xs="12">
+
+            <Col xs="8">
 
               <div className="text-center mt-1">
                 <span className="input">
-                  <input className="InputAndButton" id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
+
+                  <input className="InputAndButton" placeholder="Skriv text här" id="m" autoComplete="off" maxLength="3000" value={this.state.message} onKeyPress={e => e.key === 'Enter' && this.send()} onChange={e => this.changeMessage(e)} />
 
                   <button className="Sendbutton" onClick={e => this.send()}>Skicka</button></span>
 
 
-                {/* <AcceptInvite /> */}
+
               </div>
             </Col>
           </Row>
+
+
+
+
+          <Row>
+
+            <Col className="mt-3 ">
+              <div className="roger">
+
+              </div>
+            </Col>
+          </Row>
+
         </Container>
-      </div>
+      </div >
     );
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Toggle extends Component {
     state = {
-        on: false,
+        on: true,
     }
 
     toggle = () => {
@@ -15,7 +15,8 @@ export default class Toggle extends Component {
         return (
             <div>
                 {this.state.on && this.props.children}
-                <button onClick={this.toggle}>😖Show/hide</button>
+                <button onClick={this.toggle}>Emoji</button>
+
 
 
 
